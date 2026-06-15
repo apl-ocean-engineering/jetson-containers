@@ -10,7 +10,7 @@
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
-RUN uv pip install \
+RUN uv pip install --extra-index-url https://pypi.org/simple \
         openexr \
         toolz \
         msgpack \
@@ -18,13 +18,13 @@ RUN uv pip install \
         tensorstore \
         humanize \
     && \
-    uv pip install --index-url https://pypi.org/simple \
+    uv pip install --extra-index-url https://pypi.org/simple --index-url https://pypi.org/simple \
         tensorflow \
         tensorflow_hub \
         tensorflow_datasets \
         tensorflow_graphics \
     && \
-    uv pip install --no-deps \
+    uv pip install --extra-index-url https://pypi.org/simple --no-deps \
         chex \
         optax \
         distrax \
@@ -45,13 +45,13 @@ RUN git clone --branch=main --depth=1 https://github.com/johnnynunez/octo /opt/o
     sed -i 's|^tensorflow_datasets.*||g' requirements.txt && \
     sed -i 's|^tensorflow_graphics.*||g' requirements.txt && \
     cat requirements.txt && \
-    uv pip install -r requirements.txt && \
-    uv pip install mediapy && \
-    uv pip install -e .
+    uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt && \
+    uv pip install --extra-index-url https://pypi.org/simple mediapy && \
+    uv pip install --extra-index-url https://pypi.org/simple -e .
 
 RUN uv pip uninstall --verbose -y tensorflow_cpu_aws && \
     uv pip uninstall --verbose -y tensorflow && \
-    uv pip install tensorflow==2.15.0 tensorflow_probability
+    uv pip install --extra-index-url https://pypi.org/simple tensorflow==2.15.0 tensorflow_probability
 
 COPY benchmark.py /opt/octo
 

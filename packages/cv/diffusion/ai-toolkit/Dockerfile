@@ -14,8 +14,8 @@ WORKDIR /opt
 RUN git clone https://github.com/ostris/ai-toolkit.git && \
     cd ai-toolkit && \
     sed -i '/^git+https:\/\/github.com\/jaretburkett\/easy_dwpose.git$/d' requirements.txt && \
-    uv pip install git+https://github.com/johnnynunez/easy_dwpose.git && \
+    uv pip install --extra-index-url https://pypi.org/simple git+https://github.com/johnnynunez/easy_dwpose.git && \
     sed -i 's/==/>=/g' requirements.txt && \
-    uv pip install -r requirements.txt
+    uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt
 
 WORKDIR /opt/ai-toolkit/

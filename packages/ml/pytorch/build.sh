@@ -15,8 +15,8 @@ sed -i 's|cpuinfo_log_error|cpuinfo_log_warning|' ${CPUINFO_PATCH}
 grep 'PR_SVE_GET_VL' ${CPUINFO_PATCH} || echo "patched ${CPUINFO_PATCH}"
 tail -20 ${CPUINFO_PATCH}
 
-uv pip install -r requirements.txt
-uv pip install scikit-build ninja
+uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt
+uv pip install --extra-index-url https://pypi.org/simple scikit-build ninja
 
 
 #TORCH_CXX_FLAGS="-D_GLIBCXX_USE_CXX11_ABI=0" \
@@ -108,6 +108,7 @@ export USE_MEM_EFF_ATTENTION=1
 export USE_TENSORRT=0
 export USE_BLAS="$USE_BLAS"
 export BLAS="$BLAS"
+export MAX_JOBS=4
 python3 setup.py bdist_wheel --dist-dir /opt
 
 cd /

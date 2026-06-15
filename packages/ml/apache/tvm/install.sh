@@ -6,8 +6,8 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install apache-tvm==${TVM_VERSION} ||
-uv pip install --no-cache-dir tvm==${TVM_VERSION} ||
-uv pip install pre apache-tvm==${TVM_VERSION} ||
-uv pip install --no-cache-dir pre tvm==${TVM_VERSION} ||
+uv pip install --extra-index-url https://pypi.org/simple apache-tvm==${TVM_VERSION} ||
+uv pip install --extra-index-url https://pypi.org/simple --no-cache-dir tvm==${TVM_VERSION} ||
+uv pip install --extra-index-url https://pypi.org/simple pre apache-tvm==${TVM_VERSION} ||
+uv pip install --extra-index-url https://pypi.org/simple --no-cache-dir pre tvm==${TVM_VERSION} ||
 echo "failed to install TVM ${TVM_VERSION}"

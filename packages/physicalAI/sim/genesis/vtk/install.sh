@@ -6,5 +6,5 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install vtk==${VTK_VERSION} || \
-uv pip install vtk==${VTK_VERSION_SPEC}
+uv pip install --extra-index-url https://pypi.org/simple vtk==${VTK_VERSION} || \
+uv pip install --extra-index-url https://pypi.org/simple vtk==${VTK_VERSION_SPEC}

@@ -13,9 +13,9 @@ ADD https://api.github.com/repos/dusty-nv/nanodb/git/refs/heads/main /tmp/nanodb
 
 RUN git clone https://github.com/dusty-nv/NanoDB /opt/NanoDB && \
     cd /opt/NanoDB && \
-    uv pip install --reinstall blinker && \
-    uv pip install -r requirements.txt && \
-    uv pip install -e .
+    uv pip install --extra-index-url https://pypi.org/simple --reinstall blinker && \
+    uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt && \
+    uv pip install --extra-index-url https://pypi.org/simple -e .
 
 RUN PYTHON_ROOT=`uv pip show torch | grep Location: | cut -d' ' -f2` && \
     sed 's|if utils\.validate_url(img)|if False|g' -i $PYTHON_ROOT/gradio/components.py && \

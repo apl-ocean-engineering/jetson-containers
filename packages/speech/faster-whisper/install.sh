@@ -9,7 +9,7 @@ if [ "$FORCE_BUILD" == "on" ]; then
 fi
 
 echo "Installing faster_whisper==${FASTER_WHISPER_VERSION}..."
-uv pip install faster_whisper==${FASTER_WHISPER_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple faster_whisper==${FASTER_WHISPER_VERSION}
 
 uv pip show faster_whisper
 python3 -c 'import faster_whisper; print(faster_whisper.__version__);'

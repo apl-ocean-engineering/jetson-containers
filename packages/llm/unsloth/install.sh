@@ -19,7 +19,7 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install \
+uv pip install --extra-index-url https://pypi.org/simple \
 	'unsloth_zoo>=2026.4.3' \
 	cut_cross_entropy \
 	unsloth==${UNSLOTH_VERSION}

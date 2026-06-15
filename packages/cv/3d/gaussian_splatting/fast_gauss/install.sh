@@ -6,4 +6,4 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install fast_gauss==${FAST_GAUSS_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple fast_gauss==${FAST_GAUSS_VERSION}

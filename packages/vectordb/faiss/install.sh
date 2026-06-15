@@ -16,6 +16,6 @@ if [ "$FORCE_BUILD" == "on" ]; then
 fi
 
 tarpack install faiss-${FAISS_VERSION}
-uv pip install faiss==${FAISS_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple faiss==${FAISS_VERSION}
 
 python3 -c 'import faiss; print(faiss.__version__);'

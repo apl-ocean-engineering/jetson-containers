@@ -10,8 +10,8 @@ FROM ${BASE_IMAGE}
 
 ARG AIM_VERSION=3.28.0
 
-RUN uv pip install Cython==3.0.10
-RUN uv pip install aim
+RUN uv pip install --extra-index-url https://pypi.org/simple Cython==3.0.10
+RUN uv pip install --extra-index-url https://pypi.org/simple aim
 
 WORKDIR /opt/aim
 RUN aim init

@@ -6,5 +6,5 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install pytorch3d~=${PYTORCH3D_VERSION} --prerelease=allow ||
-uv pip install pytorch3d~=${PYTORCH3D_VERSION_SPEC} --prerelease=allow
+uv pip install --extra-index-url https://pypi.org/simple pytorch3d~=${PYTORCH3D_VERSION} --prerelease=allow ||
+uv pip install --extra-index-url https://pypi.org/simple pytorch3d~=${PYTORCH3D_VERSION_SPEC} --prerelease=allow

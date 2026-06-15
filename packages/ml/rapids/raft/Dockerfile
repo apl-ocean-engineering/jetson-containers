@@ -50,14 +50,14 @@ RUN mkdir raft/cpp/build && \
 RUN cd raft/cpp/build && \
     make -j $(nproc) install
 
-#RUN uv pip install 'Cython>=3'
+#RUN uv pip install --extra-index-url https://pypi.org/simple 'Cython>=3'
 
 RUN cd raft/cpp/build/_deps/rmm-src/python && \
     sed -i "s|versioneer.get_version()|\"${RAFT_VERSION}\".lstrip('v')|g" setup.py && \
     sed -i "s|get_versions().*|\"${RAFT_VERSION}\".lstrip('v')|g" rmm/__init__.py && \
     python3 setup.py bdist_wheel --verbose && \
     cp dist/rmm*.whl /opt && \
-    uv pip install /opt/rmm*.whl
+    uv pip install --extra-index-url https://pypi.org/simple /opt/rmm*.whl
 
 RUN uv pip show rmm && python3 -c 'import rmm; print(rmm.__version__)'
 
@@ -68,7 +68,7 @@ RUN cd raft/python/pylibraft && \
     SKBUILD_BUILD_OPTIONS="-j$(nproc)" \
     python3 -m pip wheel --no-build-isolation --verbose . && \
     cp pylibraft*.whl /opt && \
-    uv pip install /opt/pylibraft*.whl
+    uv pip install --extra-index-url https://pypi.org/simple /opt/pylibraft*.whl
 
 WORKDIR /
 

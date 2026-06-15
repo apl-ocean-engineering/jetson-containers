@@ -6,5 +6,5 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install jvp-flash-attention==${JVP_FLASH_ATTENTION_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple jvp-flash-attention==${JVP_FLASH_ATTENTION_VERSION}
 uv pip show jvp-flash-attention && python3 -c 'import flash_attn'

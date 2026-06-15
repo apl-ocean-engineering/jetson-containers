@@ -10,4 +10,4 @@ FROM ${BASE_IMAGE}
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 RUN rustc --version && \
-    uv pip install setuptools-rust
+    uv pip install --extra-index-url https://pypi.org/simple setuptools-rust

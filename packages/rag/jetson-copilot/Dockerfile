@@ -10,7 +10,7 @@
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
-RUN uv pip install \
+RUN uv pip install --extra-index-url https://pypi.org/simple \
         llama-index-core \
         llama-index-readers-file \
         llama-index-llms-openai \

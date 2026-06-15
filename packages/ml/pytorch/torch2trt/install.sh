@@ -14,7 +14,7 @@ TRT_WHEEL=$(find /usr -name "tensorrt-*-cp310-*-linux_aarch64.whl" -print -quit)
 
 if [ -f "$TRT_WHEEL" ]; then
     echo "Installing existing TensorRT wheel: $TRT_WHEEL"
-    uv pip install "$TRT_WHEEL"
+    uv pip install --extra-index-url https://pypi.org/simple "$TRT_WHEEL"
 else
     echo "CRITICAL: TensorRT wheel not found. Build cannot proceed."
     exit 1
@@ -33,4 +33,4 @@ cmake --build build --target install
 
 ldconfig
 
-uv pip install --no-build-isolation onnx-graphsurgeon
+uv pip install --extra-index-url https://pypi.org/simple --no-build-isolation onnx-graphsurgeon

@@ -11,7 +11,7 @@ apt-get install -y --no-install-recommends \
 && apt-get clean
 
 # JAX C++ extensions frequently use ninja for parallel builds
-uv pip install scikit-build ninja
+uv pip install --extra-index-url https://pypi.org/simple scikit-build ninja
 
 if [ "$FORCE_BUILD" == "on" ]; then
     echo "Forcing build of JAX ${JAX_BUILD_VERSION}"
@@ -19,11 +19,11 @@ if [ "$FORCE_BUILD" == "on" ]; then
 fi
 
 # install from the Jetson PyPI server ($PIP_INSTALL_URL)
-uv pip install jaxlib==${JAX_VERSION} jax_cuda13_plugin opt_einsum
-uv pip install --no-deps jax==${JAX_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple jaxlib==${JAX_VERSION} jax_cuda13_plugin opt_einsum
+uv pip install --extra-index-url https://pypi.org/simple --no-deps jax==${JAX_VERSION}
 
 if [ $(vercmp "$JAX_VERSION" "0.6.0") -ge 0 ]; then
-    uv pip install 'ml_dtypes>=0.5' # missing float4_e2m1fn
+    uv pip install --extra-index-url https://pypi.org/simple 'ml_dtypes>=0.5' # missing float4_e2m1fn
 fi
 
 # ensure JAX is installed correctly

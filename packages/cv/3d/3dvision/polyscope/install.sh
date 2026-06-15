@@ -6,5 +6,5 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install polyscope==${POLYSCOPE_VERSION} || \
-uv pip install polyscope==${POLYSCOPE_VERSION_SPEC}
+uv pip install --extra-index-url https://pypi.org/simple polyscope==${POLYSCOPE_VERSION} || \
+uv pip install --extra-index-url https://pypi.org/simple polyscope==${POLYSCOPE_VERSION_SPEC}

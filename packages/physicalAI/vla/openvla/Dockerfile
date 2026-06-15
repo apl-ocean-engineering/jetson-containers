@@ -13,8 +13,8 @@ ADD https://api.github.com/repos/dusty-nv/openvla/git/refs/heads/main /tmp/openv
 
 RUN git clone --depth=1 --recursive https://github.com/dusty-nv/openvla /opt/openvla && \
     cd /opt/openvla && \
-    uv pip install -e . && \
-    uv pip install --no-deps git+https://github.com/moojink/dlimp_openvla
+    uv pip install --extra-index-url https://pypi.org/simple -e . && \
+    uv pip install --extra-index-url https://pypi.org/simple --no-deps git+https://github.com/moojink/dlimp_openvla
 
 # patch issue of NCCL P2P not being supported on Jetson, and accelerate not honoring alternate backends
 RUN PYTHON_ROOT=`uv pip show accelerate | grep Location: | cut -d' ' -f2` && \

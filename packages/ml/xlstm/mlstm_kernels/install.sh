@@ -6,5 +6,5 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install mlstm_kernels==${MLSTM_KERNELS_VERSION} || \
-uv pip install mlstm_kernels==${MLSTM_KERNELS_VERSION_SPEC}
+uv pip install --extra-index-url https://pypi.org/simple mlstm_kernels==${MLSTM_KERNELS_VERSION} || \
+uv pip install --extra-index-url https://pypi.org/simple mlstm_kernels==${MLSTM_KERNELS_VERSION_SPEC}

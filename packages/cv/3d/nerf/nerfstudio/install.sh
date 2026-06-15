@@ -6,5 +6,5 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install --no-deps --no-build-isolation nerfstudio #==${NERFSTUDIO_VERSION}
-uv pip install -U --force-reinstall opencv-python-contrib
+uv pip install --extra-index-url https://pypi.org/simple --no-deps --no-build-isolation nerfstudio #==${NERFSTUDIO_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple -U --force-reinstall opencv-python-contrib

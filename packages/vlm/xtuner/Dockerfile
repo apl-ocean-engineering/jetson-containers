@@ -19,7 +19,7 @@ RUN git clone --branch=main --depth=1 --recursive https://github.com/InternLM/xt
     sed -i 's/~=/>=/g' requirements/runtime.txt && \
     sed -i 's/==/>=/g' requirements/deepspeed.txt && \
     sed -i 's/~=/>=/g' requirements/deepspeed.txt && \
-    uv pip install -e '.[all]'
+    uv pip install --extra-index-url https://pypi.org/simple -e '.[all]'
 
 # SHELL ["/bin/bash", "-c"]
 CMD ["/bin/bash"]

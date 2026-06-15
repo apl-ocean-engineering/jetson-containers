@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -ex
 
-uv pip install py-cpuinfo
+uv pip install --extra-index-url https://pypi.org/simple py-cpuinfo
 python3 -m cpuinfo
 
 apt-get update
@@ -14,4 +14,4 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install deepspeed==${DEEPSPEED_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple deepspeed==${DEEPSPEED_VERSION}

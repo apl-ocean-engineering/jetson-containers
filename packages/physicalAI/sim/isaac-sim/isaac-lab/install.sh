@@ -21,4 +21,4 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install isaaclab==${ISAACLAB_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple isaaclab==${ISAACLAB_VERSION}

@@ -18,6 +18,6 @@ RUN if [ -z "$(which protoc)" ]; then \
 		  libprotobuf-dev; \
 	   rm -rf /var/lib/apt/lists/*; \
 	   apt-get clean; \
-	   uv pip install --upgrade  protobuf; \
+	   uv pip install --extra-index-url https://pypi.org/simple --upgrade  protobuf; \
     fi
 

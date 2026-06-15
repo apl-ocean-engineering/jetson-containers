@@ -19,4 +19,4 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install habitat-sim==${HABITAT_SIM_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple habitat-sim==${HABITAT_SIM_VERSION}

@@ -12,4 +12,4 @@ ADD https://api.github.com/repos/ARISE-Initiative/robomimic/git/refs/heads/maste
 
 RUN git clone --depth=1 --recursive https://github.com/ARISE-Initiative/robomimic /opt/robomimic && \
     cd /opt/robomimic && \
-    uv pip install -e .
+    uv pip install --extra-index-url https://pypi.org/simple -e .

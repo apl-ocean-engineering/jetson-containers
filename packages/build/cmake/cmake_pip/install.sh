@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -ex
-uv pip install --force-reinstall "cmake${1:-<4}"
+uv pip install --extra-index-url https://pypi.org/simple --force-reinstall "cmake${1:-<4}"
 
 cmake --version
 which cmake

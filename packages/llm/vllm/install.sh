@@ -19,7 +19,7 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install \
+uv pip install --extra-index-url https://pypi.org/simple \
 	compressed-tensors \
 	xgrammar \
 	vllm==${VLLM_VERSION}+${CUDA_SUFFIX}
@@ -27,5 +27,5 @@ uv pip install \
 # File "/opt/venv/lib/python3.12/site-packages/gguf/gguf_reader.py"
 # `newbyteorder` was removed from the ndarray class in NumPy 2.0
 if [ $NUMPY_VERSION_MAJOR -ge 2 ]; then
-	uv pip install 'gguf>=0.13.0'
+	uv pip install --extra-index-url https://pypi.org/simple 'gguf>=0.13.0'
 fi

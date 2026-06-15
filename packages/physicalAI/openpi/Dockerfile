@@ -50,28 +50,28 @@ RUN apt-get update && apt-get install -y \
 
 # Install dependencies first
 RUN uv pip install --no-cache-dir --extra-index-url https://pypi.org/simple --index-url https://pypi.org/simple 'av>=12.0.5,<13.0.0' && \
-    uv pip install --no-deps flax==0.12.0 && \
-    uv pip install --no-deps equinox>=0.11.8 && \
-    uv pip install --no-deps orbax-checkpoint==0.11.16 && \
-    uv pip install --no-deps jaxtyping==0.3.2
+    uv pip install --extra-index-url https://pypi.org/simple --no-deps flax==0.12.0 && \
+    uv pip install --extra-index-url https://pypi.org/simple --no-deps equinox>=0.11.8 && \
+    uv pip install --extra-index-url https://pypi.org/simple --no-deps orbax-checkpoint==0.11.16 && \
+    uv pip install --extra-index-url https://pypi.org/simple --no-deps jaxtyping==0.3.2
 
 # # Install mujoco 2.3.7 which is required by gym-aloha
-# RUN uv pip install --no-cache-dir --only-binary :all: mujoco==2.3.7
+# RUN uv pip install --extra-index-url https://pypi.org/simple --no-cache-dir --only-binary :all: mujoco==2.3.7
 
 # Install gym-aloha without dependencies first
-RUN uv pip install --no-cache-dir --no-deps gym-aloha>=0.1.1
+RUN uv pip install --extra-index-url https://pypi.org/simple --no-cache-dir --no-deps gym-aloha>=0.1.1
 
 COPY benchmark_pi0_droid.py /opt/openpi/benchmark_pi0_droid.py
 
 # Install local packages
 RUN cd /opt/openpi && \
-    uv pip install -e packages/openpi-client && \
-    uv pip install -e .
+    uv pip install --extra-index-url https://pypi.org/simple -e packages/openpi-client && \
+    uv pip install --extra-index-url https://pypi.org/simple -e .
 
-RUN uv pip install jaxlib jax_cuda12_plugin jax_cuda12_pjrt opt_einsum && \
-    uv pip install --no-dependencies jax
+RUN uv pip install --extra-index-url https://pypi.org/simple jaxlib jax_cuda12_plugin jax_cuda12_pjrt opt_einsum && \
+    uv pip install --extra-index-url https://pypi.org/simple --no-dependencies jax
 
-RUN uv pip install --no-deps optax importlib_resources humanize tensorstore simplejson datasets pandas pyarrow pytz multiprocess metadata dill xxhash jsonlines draccus mergedeep typing_inspect mypy_extensions chex etils toolz
+RUN uv pip install --extra-index-url https://pypi.org/simple --no-deps optax importlib_resources humanize tensorstore simplejson datasets pandas pyarrow pytz multiprocess metadata dill xxhash jsonlines draccus mergedeep typing_inspect mypy_extensions chex etils toolz
 RUN python3 -c "import jax; import jaxlib; print('JAX version:', jax.__version__); print('JAXLIB version:', jaxlib.__version__); print('Devices:', jax.devices())"
 
 CMD /bin/bash

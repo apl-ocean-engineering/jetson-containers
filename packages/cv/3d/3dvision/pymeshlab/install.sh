@@ -27,8 +27,8 @@ WHL_URL="https://github.com/cnr-isti-vclab/PyMeshLab/releases/download/v${PYMESH
 echo "Using wheel URL: ${WHL_URL}"
 
 # Install the .whl file directly from the constructed URL
-uv pip install "${WHL_URL}" || \
-uv pip install pymeshlab==${PYMESHLAB_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple "${WHL_URL}" || \
+uv pip install --extra-index-url https://pypi.org/simple pymeshlab==${PYMESHLAB_VERSION}
 
 # Test the installation
 python3 -c "import pymeshlab; ms = pymeshlab.MeshSet()"

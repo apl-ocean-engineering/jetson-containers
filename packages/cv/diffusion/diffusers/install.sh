@@ -6,5 +6,5 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install diffusers==${DIFFUSERS_VERSION} || \
-	uv pip install diffusers==${DIFFUSERS_VERSION}.dev0
+uv pip install --extra-index-url https://pypi.org/simple diffusers==${DIFFUSERS_VERSION} || \
+	uv pip install --extra-index-url https://pypi.org/simple diffusers==${DIFFUSERS_VERSION}.dev0

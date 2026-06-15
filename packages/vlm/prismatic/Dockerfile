@@ -12,7 +12,7 @@ ADD https://api.github.com/repos/TRI-ML/prismatic-vlms/git/refs/heads/main /tmp/
 
 RUN git clone --depth=1 --recursive https://github.com/TRI-ML/prismatic-vlms /opt/prismatic && \
     cd /opt/prismatic && \
-    uv pip install -e .
+    uv pip install --extra-index-url https://pypi.org/simple -e .
 
 # patch issue of NCCL P2P not being supported on Jetson, and accelerate not honoring alternate backends
 RUN PYTHON_ROOT=`uv pip show accelerate | grep Location: | cut -d' ' -f2` && \

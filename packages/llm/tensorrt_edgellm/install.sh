@@ -26,7 +26,7 @@ sed -i 's|torch~=2.9.1|torch>=2.9.1|g' requirements.txt
 sed -i 's|"torch~=2.9.1"|"torch>=2.9.1"|g' pyproject.toml
 sed -i 's|torch~=|torch>=|g' requirements.txt pyproject.toml
 
-uv pip install .
+uv pip install --extra-index-url https://pypi.org/simple .
 
 tensorrt-edgellm-export-llm --help
 tensorrt-edgellm-quantize-llm --help

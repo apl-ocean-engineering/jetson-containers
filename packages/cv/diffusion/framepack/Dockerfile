@@ -15,6 +15,6 @@ WORKDIR /opt
 RUN git clone https://github.com/lllyasviel/FramePack && \
     cd FramePack && \
     sed -i 's/==/>=/g' requirements.txt && \
-    uv pip install -r requirements.txt
+    uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt
 
 CMD python3 /opt/FramePack/demo_gradio.py

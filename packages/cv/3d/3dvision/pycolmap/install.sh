@@ -63,4 +63,4 @@ PYCOLMAP_TARPACK_NAME="${PYCOLMAP_TARPACK_NAME:-colmap-${PYCOLMAP_VERSION}}"
 tarpack install "colmap-${PYCOLMAP_VERSION}" || {echo "tarpack install failed for colmap-${PYCOLMAP_VERSION}, falling back to pip."}
 
 # Fallback general (o arquitecturas no-tegra): instala desde PyPI
-uv pip install "pycolmap==${PYCOLMAP_VERSION}"
+uv pip install --extra-index-url https://pypi.org/simple "pycolmap==${PYCOLMAP_VERSION}"

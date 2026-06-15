@@ -2,9 +2,9 @@
 set -ex
 
 # if you want optimum[exporters,onnxruntime] see the optimum package
-uv pip install accelerate
-uv pip install sentencepiece
-uv pip install optimum
+uv pip install --extra-index-url https://pypi.org/simple accelerate
+uv pip install --extra-index-url https://pypi.org/simple sentencepiece
+uv pip install --extra-index-url https://pypi.org/simple optimum
 
 # Get the version that optimum installed, being more precise with the grep
 OPTIMUM_TRANSFORMERS_VERSION=$(uv pip show transformers | grep '^Version:' | head -n1 | cut -d' ' -f2)
@@ -22,7 +22,7 @@ if [ -z "$TRANSFORMERS_PACKAGE" ]; then
 fi
 
 echo "Installing transformers $TRANSFORMERS_VERSION (from $TRANSFORMERS_PACKAGE)"
-uv pip install ${TRANSFORMERS_PACKAGE}
+uv pip install --extra-index-url https://pypi.org/simple ${TRANSFORMERS_PACKAGE}
 
 # "/usr/local/lib/python3.8/dist-packages/transformers/modeling_utils.py", line 118
 # AttributeError: module 'torch.distributed' has no attribute 'is_initialized'

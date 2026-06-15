@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -ex
 
-uv pip install \
+uv pip install --extra-index-url https://pypi.org/simple \
   compressed-tensors \
   datasets \
   decord2 \
@@ -40,5 +40,5 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install sgl-kernel "sglang[all]~=${SGLANG_VERSION}" || \
-uv pip install sgl-kernel "sglang[all]~=${SGLANG_VERSION_SPEC}"
+uv pip install --extra-index-url https://pypi.org/simple sgl-kernel "sglang[all]~=${SGLANG_VERSION}" || \
+uv pip install --extra-index-url https://pypi.org/simple sgl-kernel "sglang[all]~=${SGLANG_VERSION_SPEC}"

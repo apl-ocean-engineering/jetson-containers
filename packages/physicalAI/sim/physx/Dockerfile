@@ -19,7 +19,7 @@ RUN apt-get update && \
 		  libxmuu-dev \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean \
-    && uv pip install mujoco
+    && uv pip install --extra-index-url https://pypi.org/simple mujoco
 
 COPY install.sh /tmp/physx/install.sh
 

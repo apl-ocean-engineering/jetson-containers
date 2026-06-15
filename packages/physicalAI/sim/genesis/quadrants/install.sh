@@ -6,4 +6,4 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install quadrants==${QUADRANTS_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple quadrants==${QUADRANTS_VERSION}

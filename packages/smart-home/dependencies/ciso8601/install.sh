@@ -10,7 +10,7 @@ fi
 
 echo "Installing ciso8601 ${CISO8601_VERSION}..."
 
-uv pip install ciso8601==${CISO8601_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple ciso8601==${CISO8601_VERSION}
 
 uv pip show ciso8601
 python3 -c 'import ciso8601; print(ciso8601.__version__);'

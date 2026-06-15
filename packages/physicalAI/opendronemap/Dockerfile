@@ -27,7 +27,7 @@ RUN apt-get update && \
     && apt-get clean
 
 # https://cmake.org/cmake/help/latest/policy/CMP0146.html
-RUN uv pip install 'cmake<3.27'
+RUN uv pip install --extra-index-url https://pypi.org/simple 'cmake<3.27'
 
 ADD https://api.github.com/repos/OpenDroneMap/ODM/git/refs/heads/master /tmp/odm_version.json
 
@@ -35,13 +35,13 @@ RUN env && \
     git clone --recursive --depth=1 https://github.com/OpenDroneMap/ODM ${ODM_HOME} && \
     cd ${ODM_HOME} && \
     sed -i 's/==/>=/g' requirements.txt && \
-    uv pip install python-dateutil && \
+    uv pip install --extra-index-url https://pypi.org/simple python-dateutil && \
     sed -i 's|https://github.com/opencv/opencv/archive/4\.12\.0\.zip|https://github.com/opencv/opencv/archive/4.13.0.zip|' ${ODM_HOME}/SuperBuild/cmake/External-OpenCV.cmake && \
     PORTABLE_INSTALL=YES GPU_INSTALL=YES bash configure.sh install || echo "BUILD FAILED"
 
 
 # https://github.com/rasterio/rasterio/issues/2333
 # https://github.com/Toblerity/Fiona/issues/1043
-#RUN uv pip install 'Cython<0.29.21'
+#RUN uv pip install --extra-index-url https://pypi.org/simple 'Cython<0.29.21'
 
 #ENTRYPOINT ["python3", "/code/run.py"]

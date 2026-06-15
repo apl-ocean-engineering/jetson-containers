@@ -3,7 +3,7 @@ from jetson_containers import LSB_RELEASE, log_warning
 import os
 
 ROS1_DISTROS = ['melodic', 'noetic']
-ROS2_DISTROS = ['foxy', 'galactic', 'humble', 'iron', 'jazzy']
+ROS2_DISTROS = ['foxy', 'galactic', 'humble', 'iron', 'jazzy','kilted']
 
 ROS_DISTROS = ROS1_DISTROS + ROS2_DISTROS
 ROS_PACKAGES = ['ros_base', 'ros_core', 'desktop']
@@ -11,7 +11,7 @@ ROS_PACKAGES = ['ros_base', 'ros_core', 'desktop']
 if 'ROS_DISTRO' in os.environ:
   ROS_DISTRO = os.environ.get('ROS_DISTRO')
 if LSB_RELEASE == '24.04':
-  ROS_DISTRO = 'jazzy'
+  ROS_DISTRO = 'kilted'
 elif LSB_RELEASE == '22.04':
   ROS_DISTRO = 'humble'
 elif LSB_RELEASE == '20.04':

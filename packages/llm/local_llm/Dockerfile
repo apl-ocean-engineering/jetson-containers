@@ -18,8 +18,8 @@ ENV PYTHONPATH=${PYTHONPATH}:/opt/local_llm \
 
 COPY requirements.txt .
 
-RUN uv pip install --reinstall blinker && \
-    uv pip install -r requirements.txt && \
+RUN uv pip install --extra-index-url https://pypi.org/simple --reinstall blinker && \
+    uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt && \
     openssl req \
 	-new \
 	-newkey rsa:4096 \

@@ -54,6 +54,6 @@ RUN apt-get update && \
 COPY build.sh install.sh /tmp/PIXSFM/
 
 RUN cd /opt/
-RUN uv pip install build wheel
+RUN uv pip install --extra-index-url https://pypi.org/simple build wheel
 
 RUN /tmp/PIXSFM/install.sh || /tmp/PIXSFM/build.sh

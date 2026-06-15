@@ -20,8 +20,8 @@ RUN git clone --depth=1 https://github.com/hiyouga/LlamaFactory /opt/llama-facto
     sed 's|DEFAULT_DATA_DIR = "data"|DEFAULT_DATA_DIR = os.environ.get("LLAMA_FACTORY_DATA_DIR", "/data/llama-factory/data")|' -i ./src/llamafactory/webui/common.py && \
     sed 's|DEFAULT_SAVE_DIR = "saves"|DEFAULT_SAVE_DIR = os.environ.get("LLAMA_FACTORY_SAVE_DIR", "/data/llama-factory/saves")|' -i ./src/llamafactory/webui/common.py && \
     cat ./src/llamafactory/webui/common.py && \
-    uv pip install -e ".[metrics]" && \
-    uv pip install openai
+    uv pip install --extra-index-url https://pypi.org/simple -e ".[metrics]" && \
+    uv pip install --extra-index-url https://pypi.org/simple openai
 
 ENV GRADIO_SERVER_PORT=7860 \
     API_PORT=8000

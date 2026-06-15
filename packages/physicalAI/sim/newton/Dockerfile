@@ -17,7 +17,7 @@ RUN apt-get update && \
 		  libxmuu-dev \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean \
-    && uv pip install mujoco
+    && uv pip install --extra-index-url https://pypi.org/simple mujoco
 
 RUN git clone --recursive --depth=1 https://github.com/newton-physics/newton /opt/newton && \
     cd /opt/newton && \

@@ -22,11 +22,11 @@ RUN git clone --recursive https://github.com/nvidia-cosmos/cosmos-predict2 /opt/
 RUN cd /opt/cosmos-predict2 && \
     sed -i '/decord==0.6.0/d' requirements-conda.txt && \
     sed -i 's/==/>=/g' requirements-conda.txt && \
-    uv pip install einops attrs nvidia-ml-py protobuf && \
-    uv pip install -r requirements-conda.txt && \
+    uv pip install --extra-index-url https://pypi.org/simple einops attrs nvidia-ml-py protobuf && \
+    uv pip install --extra-index-url https://pypi.org/simple -r requirements-conda.txt && \
     export MAX_JOBS=$(nproc) && \
-    uv pip install -U --force-reinstall opencv-contrib-python && \
-    uv pip install -e .
+    uv pip install --extra-index-url https://pypi.org/simple -U --force-reinstall opencv-contrib-python && \
+    uv pip install --extra-index-url https://pypi.org/simple -e .
 
 WORKDIR /opt/cosmos-predict2
 CMD ["/bin/bash"]

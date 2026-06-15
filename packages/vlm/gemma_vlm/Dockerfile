@@ -13,5 +13,5 @@ FROM ${BASE_IMAGE}
 COPY *.whl /tmp/
 COPY *.py /opt/
 
-RUN uv pip install /tmp/*.whl && \
+RUN uv pip install --extra-index-url https://pypi.org/simple /tmp/*.whl && \
     chmod +x /opt/*.py

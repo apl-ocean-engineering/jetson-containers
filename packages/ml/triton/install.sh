@@ -7,4 +7,4 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install triton==${TRITON_VERSION} --prerelease=allow
+uv pip install --extra-index-url https://pypi.org/simple triton==${TRITON_VERSION} --prerelease=allow

@@ -21,8 +21,8 @@ SHELL ["/bin/bash", "-c"]
 RUN sed -i 's/^#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
 
 # jupyterlab<4 -- ModuleNotFoundError: No module named 'notebook.auth'
-RUN uv pip install jupyter "jupyterlab${JUPYTERLAB_VERSION_SPEC}" && \
-    uv pip install jupyterlab_widgets
+RUN uv pip install --extra-index-url https://pypi.org/simple jupyter "jupyterlab${JUPYTERLAB_VERSION_SPEC}" && \
+    uv pip install --extra-index-url https://pypi.org/simple jupyterlab_widgets
 
 RUN uv pip list
 RUN jupyter --version

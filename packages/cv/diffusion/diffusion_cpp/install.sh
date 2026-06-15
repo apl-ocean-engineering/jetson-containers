@@ -9,7 +9,7 @@ apt-get clean
 
 
 
-uv pip install \
+uv pip install --extra-index-url https://pypi.org/simple \
         typing-extensions \
         uvicorn \
         anyio \
@@ -26,7 +26,7 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	echo "Forcing build of stable-diffusion.cpp ${STABLE_DIFFUSION_CPP_VERSION}"
 	exit 1
 fi
-if uv pip install --only-binary=:all: "stable-diffusion-cpp-python==${STABLE_DIFFUSION_CPP_VERSION_PY}"; then
+if uv pip install --extra-index-url https://pypi.org/simple --only-binary=:all: "stable-diffusion-cpp-python==${STABLE_DIFFUSION_CPP_VERSION_PY}"; then
 	if [ -n "${STABLE_DIFFUSION_CPP_VERSION}" ]; then
 		tarpack install "stable-diffusion-cpp-${STABLE_DIFFUSION_CPP_VERSION}" || true
 	fi

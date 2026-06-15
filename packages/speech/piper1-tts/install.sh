@@ -7,7 +7,7 @@ if [ "$FORCE_BUILD" == "on" ]; then
 fi
 
 # install the wheel
-uv pip install piper-tts==${PIPER_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple piper-tts==${PIPER_VERSION}
 
 # make sure it loads
 uv pip show piper-tts

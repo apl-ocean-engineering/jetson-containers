@@ -31,4 +31,4 @@ RUN git clone --branch=${LITA_BRANCH} --depth=1 https://github.com/${LITA_REPO} 
 
 COPY benchmark.py ${LITA_ROOT}/lita/serve/
 
-RUN uv pip install -e ${LITA_ROOT}
+RUN uv pip install --extra-index-url https://pypi.org/simple -e ${LITA_ROOT}

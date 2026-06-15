@@ -16,4 +16,4 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
-RUN uv pip install python-can[serial]
+RUN uv pip install --extra-index-url https://pypi.org/simple python-can[serial]

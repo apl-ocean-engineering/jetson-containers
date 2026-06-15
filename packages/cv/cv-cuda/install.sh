@@ -37,7 +37,7 @@ fi
 # install python wheels
 for filename in *.whl; do
   if [[ -f $filename && "$NVCV_PYTHON" == "on" ]]; then
-    uv pip install $filename
+    uv pip install --extra-index-url https://pypi.org/simple $filename
   fi
 done
 

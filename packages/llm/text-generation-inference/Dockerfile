@@ -45,7 +45,7 @@ RUN sed 's|python_version >= "3.9"|python_version >= "3.8"|g' -i requirements.tx
     #sed 's|^opentelemetry-api.*|opentelemetry-api|g' -i requirements.txt && \
     cat requirements.txt
 
-RUN uv pip install -r requirements.txt
+RUN uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt
 
 RUN sed 's|^python = .*|python = "^3.8"|g' -i pyproject.toml && \
     sed 's|^protobuf = .*|protobuf = \"*\"|g' -i pyproject.toml && \
@@ -58,7 +58,7 @@ RUN sed 's|^python = .*|python = "^3.8"|g' -i pyproject.toml && \
     sed 's|^scipy = .*|scipy = \"*\"|g' -i pyproject.toml && \
     cat pyproject.toml
 
-RUN uv pip install --no-deps -e ".[bnb, accelerate]" --verbose
+RUN uv pip install --extra-index-url https://pypi.org/simple --no-deps -e ".[bnb, accelerate]" --verbose
 
 WORKDIR /opt/text-generation-inference/
 
@@ -80,10 +80,10 @@ RUN sed 's|\"-arch=compute_80\",| |g' -i server/custom_kernels/setup.py && \
 RUN make install-custom-kernels
 
 # install the text-generation client library
-RUN uv pip install text-generation
+RUN uv pip install --extra-index-url https://pypi.org/simple text-generation
 
 # re-install bitsandbytes because it got overwritten
-RUN uv pip install /opt/bitsandbytes*.whl
+RUN uv pip install --extra-index-url https://pypi.org/simple /opt/bitsandbytes*.whl
 
 # make sure it loads
 RUN cd /opt/text-generation-inference/server/text_generation_server && python3 cli.py --help

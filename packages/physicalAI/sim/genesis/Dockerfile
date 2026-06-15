@@ -55,7 +55,7 @@ RUN add-apt-repository ppa:ubuntu-toolchain-r/test && \
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 110
 
-RUN uv pip install "pybind11[global]"
+RUN uv pip install --extra-index-url https://pypi.org/simple "pybind11[global]"
 
 RUN rustup self uninstall -y && \
     rm -rf /root/.cargo /root/.rustup
@@ -67,8 +67,8 @@ RUN git clone --recursive https://github.com/Genesis-Embodied-AI/Genesis /opt/ge
 
 COPY build_luisa.sh /workspace/build_luisa.sh
 RUN ./build_luisa.sh ${PYTHON_VERSION}
-RUN uv pip install PyOpenGL --verbose
-RUN uv pip install coacd libigl pymeshlab --verbose
+RUN uv pip install --extra-index-url https://pypi.org/simple PyOpenGL --verbose
+RUN uv pip install --extra-index-url https://pypi.org/simple coacd libigl pymeshlab --verbose
 
 # ===============================================================
 # MORE PACKAGES
@@ -108,13 +108,13 @@ WORKDIR /workspace
 # GENESIS BUILD
 # ===============================================================
 
-RUN uv pip install --no-deps git+https://github.com/johnnynunez/tetgen.git
+RUN uv pip install --extra-index-url https://pypi.org/simple --no-deps git+https://github.com/johnnynunez/tetgen.git
 # FIX: More robust removal of blinker
 RUN find / -name "blinker*" -print0 | xargs -0 -r rm -rf
-RUN uv pip install open3d tetgen trimesh --verbose && \
+RUN uv pip install --extra-index-url https://pypi.org/simple open3d tetgen trimesh --verbose && \
 cd /opt/genesis && \
 sed -i '/numpy ==/d; /quadrants/d; /tetgen/d' pyproject.toml && \
-uv pip install .
+uv pip install --extra-index-url https://pypi.org/simple .
 
 # ===============================================================
 # INSTALL OMPL
@@ -124,7 +124,7 @@ uv pip install .
 #    && chmod u+x install-ompl-ubuntu.sh \
 #    && ./install-ompl-ubuntu.sh --python --github \
 #    && rm install-ompl-ubuntu.sh
-RUN uv pip install ompl
+RUN uv pip install --extra-index-url https://pypi.org/simple ompl
 # ===============================================================
 # PATH
 # ===============================================================
@@ -141,6 +141,6 @@ RUN mkdir -p /usr/local/lib/python${PYTHON_VERSION}/dist-packages/genesis/ext/Lu
 RUN echo "export LD_LIBRARY_PATH=/opt/genesis/genesis/ext/ParticleMesher/ParticleMesherPy:$LD_LIBRARY_PATH" >> ~/.bashrc && \
     cd /opt/genesis/
 RUN ldconfig
-RUN uv pip install --force-reinstall opencv-contrib-python
+RUN uv pip install --extra-index-url https://pypi.org/simple --force-reinstall opencv-contrib-python
 WORKDIR /opt/genesis/
 CMD ["/bin/bash"]

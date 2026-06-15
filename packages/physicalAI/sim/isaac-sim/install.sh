@@ -22,7 +22,7 @@ if [ "$FORCE_BUILD" == "on" ]; then
 fi
 
 
-uv pip install \
+uv pip install --extra-index-url https://pypi.org/simple \
   isaacsim-app==${ISAACSIM_VERSION} \
   isaacsim-asset==${ISAACSIM_VERSION} \
   isaacsim-benchmark==${ISAACSIM_VERSION} \

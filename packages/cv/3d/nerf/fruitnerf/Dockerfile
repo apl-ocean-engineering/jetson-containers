@@ -15,5 +15,5 @@ ARG FRUITNERF_VERSION \
 
 COPY build.sh /tmp/FRUITNERF/
 
-RUN uv pip install build wheel && \
+RUN uv pip install --extra-index-url https://pypi.org/simple build wheel && \
     /tmp/FRUITNERF/build.sh

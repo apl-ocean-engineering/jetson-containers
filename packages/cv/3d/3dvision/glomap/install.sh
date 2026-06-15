@@ -10,5 +10,5 @@ fi
 
 tarpack install "glomap-${GLOMAP_VERSION}" || {echo "tarpack install failed for glomap-${GLOMAP_VERSION}, falling back to pip."}
 
-# uv pip install "glomap==${GLOMAP_VERSION}"
+# uv pip install --extra-index-url https://pypi.org/simple "glomap==${GLOMAP_VERSION}"
 ldconfig || true

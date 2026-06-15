@@ -18,11 +18,11 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
-RUN uv pip install openai-whisper && \
+RUN uv pip install --extra-index-url https://pypi.org/simple openai-whisper && \
     git clone https://github.com/NVIDIA-AI-IOT/whisper_trt /opt/whisper_trt && \
     cd /opt/whisper_trt && \
-    uv pip install --no-build-isolation -e . && \
-    uv pip install onnxruntime && \
+    uv pip install --extra-index-url https://pypi.org/simple --no-build-isolation -e . && \
+    uv pip install --extra-index-url https://pypi.org/simple onnxruntime && \
     mkdir -p ~/.cache && \
     ln -s /data/models/whisper ~/.cache/whisper && \
     ln -s /data/models/whisper ~/.cache/whisper_trt

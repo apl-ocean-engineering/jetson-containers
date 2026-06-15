@@ -14,7 +14,7 @@ WORKDIR /opt
 # Clone the repository:
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git && \
     cd ComfyUI && \
-    uv pip install -r requirements.txt
+    uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt
 
 RUN cd /opt/ComfyUI/custom_nodes && \
     git clone --recursive https://github.com/ltdrdata/ComfyUI-Manager.git && \
@@ -22,9 +22,9 @@ RUN cd /opt/ComfyUI/custom_nodes && \
     git clone --recursive https://github.com/pydn/ComfyUI-to-Python-Extension.git && \
     git clone --recursive https://github.com/johnnynunez/ComfyUI-Crystools.git
 
-RUN uv pip install -U -r /opt/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt && \
-    uv pip install -U -r /opt/ComfyUI/custom_nodes/comfyui-flux-accelerator/requirements.txt && \
-    uv pip install -U -r /opt/ComfyUI/custom_nodes/ComfyUI-to-Python-Extension/requirements.txt
+RUN uv pip install --extra-index-url https://pypi.org/simple -U -r /opt/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt && \
+    uv pip install --extra-index-url https://pypi.org/simple -U -r /opt/ComfyUI/custom_nodes/comfyui-flux-accelerator/requirements.txt && \
+    uv pip install --extra-index-url https://pypi.org/simple -U -r /opt/ComfyUI/custom_nodes/ComfyUI-to-Python-Extension/requirements.txt
 
 
 RUN cd /opt/ComfyUI/custom_nodes/comfyui-flux-accelerator/scripts && \
@@ -37,7 +37,7 @@ RUN cd /opt/ComfyUI/custom_nodes/comfyui-flux-accelerator/scripts && \
 
 WORKDIR /opt/ComfyUI/
 
-RUN uv pip install -U deepdiff xformers onnxruntime-gpu triton lm_eval vhacdx manifold openexr piexif py-cpuinfo
+RUN uv pip install --extra-index-url https://pypi.org/simple -U deepdiff xformers onnxruntime-gpu triton lm_eval vhacdx manifold openexr piexif py-cpuinfo
 
 COPY workflow /opt/ComfyUI/workflow
 COPY extra /opt/ComfyUI/extra

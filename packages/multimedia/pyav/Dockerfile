@@ -11,4 +11,4 @@ FROM ${BASE_IMAGE}
 # Install PyAV (Python bindings for FFmpeg)
 # most of this dockerfile was to build ffmpeg
 # with AV1 enabled, and that was moved to ffmpeg
-RUN uv pip install av
+RUN uv pip install --extra-index-url https://pypi.org/simple av

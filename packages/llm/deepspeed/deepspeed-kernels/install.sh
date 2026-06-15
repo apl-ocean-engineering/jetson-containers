@@ -6,4 +6,4 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install deepspeed-kernels==${DEEPSPEED_KERNELS_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple deepspeed-kernels==${DEEPSPEED_KERNELS_VERSION}

@@ -19,11 +19,11 @@ apt-get clean
 
 bash ${TMP_DIR}/install_cusparselt.sh
 
-uv pip install polygraphy mpi4py
+uv pip install --extra-index-url https://pypi.org/simple polygraphy mpi4py
 
 # Patched: Install local TensorRT wheel to satisfy dependencies before requirements.txt
 # This prevents uv from trying to find tensorrt on PyPI (which fails for Tegra)
-uv pip install /usr/local/lib/python3.10/dist-packages/tensorrt-10.3.0-cp310-none-linux_aarch64.whl
+uv pip install --extra-index-url https://pypi.org/simple /usr/local/lib/python3.10/dist-packages/tensorrt-10.3.0-cp310-none-linux_aarch64.whl
 
 if [ -s ${SOURCE_TAR} ]; then
         echo "extracting TensorRT-LLM sources from ${TRT_LLM_SOURCE}"
@@ -54,7 +54,7 @@ if [ "$FORCE_BUILD" == "on" ]; then
         exit 1
 fi
 
-uv pip install -r ${REQUIREMENTS_FILENAME}
-uv pip install tensorrt_llm==${TRT_LLM_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple -r ${REQUIREMENTS_FILENAME}
+uv pip install --extra-index-url https://pypi.org/simple tensorrt_llm==${TRT_LLM_VERSION}
 
-uv pip uninstall torch && uv pip install torch==${PYTORCH_VERSION}
+uv pip uninstall torch && uv pip install --extra-index-url https://pypi.org/simple torch==${PYTORCH_VERSION}

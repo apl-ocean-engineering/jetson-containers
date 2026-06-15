@@ -6,5 +6,5 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install tilelang==${TILELANG_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple tilelang==${TILELANG_VERSION}
 uv pip show tilelang && python3 -c 'import tilelang'

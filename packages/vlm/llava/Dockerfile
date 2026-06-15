@@ -29,9 +29,9 @@ RUN cd llava && \
     uv build --wheel --out-dir dist --no-deps --verbose . && \
     cp dist/llava*.whl /opt
 
-RUN uv pip install llava*.whl
+RUN uv pip install --extra-index-url https://pypi.org/simple llava*.whl
 
-#RUN uv pip install /opt/torch*.whl
-#RUN uv pip install /opt/torchvision*.whl
+#RUN uv pip install --extra-index-url https://pypi.org/simple /opt/torch*.whl
+#RUN uv pip install --extra-index-url https://pypi.org/simple /opt/torchvision*.whl
 
 WORKDIR /opt/llava

@@ -23,8 +23,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*  && \
     apt-get clean
 
-RUN uv pip install phonemizer  && \
-    uv pip install torchmetrics
+RUN uv pip install --extra-index-url https://pypi.org/simple phonemizer  && \
+    uv pip install --extra-index-url https://pypi.org/simple torchmetrics
 
 # Clone the repository:
 RUN git clone https://github.com/jasonppy/VoiceCraft.git && \

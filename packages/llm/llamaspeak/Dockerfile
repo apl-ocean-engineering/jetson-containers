@@ -12,7 +12,7 @@ FROM ${BASE_IMAGE}
 WORKDIR /opt/llamaspeak
 
 COPY requirements.txt .
-RUN uv pip install -r requirements.txt
+RUN uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt
 
 COPY *.py ./
 COPY static/ static

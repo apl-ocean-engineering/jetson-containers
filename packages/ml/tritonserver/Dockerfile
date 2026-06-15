@@ -21,7 +21,7 @@ RUN cd /opt && \
     tar -xzvf ${TRITON_TAR} && \
     rm ${TRITON_TAR}
 
-RUN uv pip install --upgrade /opt/${TRITON_CLIENTS}/python/tritonclient-${TRITON_VERSION}-py3-none-manylinux2014_aarch64.whl[all]
+RUN uv pip install --extra-index-url https://pypi.org/simple --upgrade /opt/${TRITON_CLIENTS}/python/tritonclient-${TRITON_VERSION}-py3-none-manylinux2014_aarch64.whl[all]
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -59,4 +59,4 @@ ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/targets/aarch64-linux/lib"
 
 RUN uv run python -c 'import tritonclient; print("Triton Client verified")' 
 
-RUN uv pip install $(find /usr -name "tensorrt-*-cp310-*-linux_aarch64.whl" -print -quit)
+RUN uv pip install --extra-index-url https://pypi.org/simple $(find /usr -name "tensorrt-*-cp310-*-linux_aarch64.whl" -print -quit)

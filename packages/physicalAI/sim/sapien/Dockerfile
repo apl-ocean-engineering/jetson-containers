@@ -18,9 +18,9 @@ RUN apt-get update && \
 		  spirv-* \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean \
-    && uv pip install mujoco
+    && uv pip install --extra-index-url https://pypi.org/simple mujoco
 
-RUN uv pip install git+https://github.com/fbxiang/auditwheel.git@088b034ae497b0add794da13f8e0f3b0a3b2d651
+RUN uv pip install --extra-index-url https://pypi.org/simple git+https://github.com/fbxiang/auditwheel.git@088b034ae497b0add794da13f8e0f3b0a3b2d651
 RUN echo "#!/usr/bin/env python3" > /usr/local/bin/auditwheel && \
     echo "import re, sys" >> /usr/local/bin/auditwheel && \
     echo "from auditwheel.main import main" >> /usr/local/bin/auditwheel && \

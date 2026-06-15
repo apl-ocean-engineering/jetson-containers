@@ -20,7 +20,7 @@ RUN git clone https://github.com/NVIDIA-AI-IOT/trt_pose && \
     echo "[build-system]" > pyproject.toml && \
     echo "requires = [\"setuptools>=40.8.0\", \"wheel\", \"torch\", \"torchvision\"]" >> pyproject.toml && \
     echo "build-backend = \"setuptools.build_meta\"" >> pyproject.toml && \
-    uv pip install -e .
+    uv pip install --extra-index-url https://pypi.org/simple -e .
 
 # 2. Install the NanoSAM Python package
 RUN git clone https://github.com/NVIDIA-AI-IOT/nanosam && \
@@ -30,7 +30,7 @@ RUN git clone https://github.com/NVIDIA-AI-IOT/nanosam && \
 ENV PYTHONPATH=${PYTHONPATH}:/opt/nanosam
 
 # 3. Build the TensorRT engine for the mask decoder
-RUN uv pip install timm
+RUN uv pip install --extra-index-url https://pypi.org/simple timm
 
 #RUN cd /opt/nanosam && \
 #    mkdir data && \
@@ -53,7 +53,7 @@ RUN cd /opt/nanosam && \
         --maxShapes=point_coords:1x10x2,point_labels:1x10
 
 # 4. Build the TensorRT engine for the NanoSAM image encoder
-RUN uv pip install gdown && \
+RUN uv pip install --extra-index-url https://pypi.org/simple gdown && \
     cd /opt/nanosam/data/ && \
 #     gdown https://drive.google.com/uc?id=14-SsvoaTl-esC3JOzomHDnI9OGgdO2OR && \
     wget https://raw.githubusercontent.com/johnnynunez/nanosam/main/data/resnet18_image_encoder.onnx && \
@@ -65,7 +65,7 @@ RUN uv pip install gdown && \
         --fp16
 
 # 5. Run the basic usage example
-RUN uv pip install matplotlib
+RUN uv pip install --extra-index-url https://pypi.org/simple matplotlib
 RUN cd /opt/nanosam/ && \
     python3 examples/basic_usage.py \
         --image_encoder=data/resnet18_image_encoder.engine \

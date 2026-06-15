@@ -10,7 +10,7 @@ fi
 
 echo "Installing wyoming-openwakeword ${WYOMING_OPENWAKEWORD_VERSION}..."
 
-uv pip install wyoming_openwakeword==${WYOMING_OPENWAKEWORD_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple wyoming_openwakeword==${WYOMING_OPENWAKEWORD_VERSION}
 
 uv pip show wyoming_openwakeword
 python3 -c 'import wyoming_openwakeword; print(wyoming_openwakeword.__version__);'

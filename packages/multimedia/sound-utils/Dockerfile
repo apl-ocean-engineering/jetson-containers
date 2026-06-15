@@ -17,5 +17,5 @@ RUN apt-get update &&  \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies in one step
-RUN uv pip install soundfile sounddevice
+RUN uv pip install --extra-index-url https://pypi.org/simple soundfile sounddevice
 

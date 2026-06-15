@@ -14,8 +14,8 @@ WORKDIR /opt
 RUN git clone --depth=1 https://github.com/NVlabs/FastGen /opt/fastgen && \
     cd /opt/fastgen && \
     sed -i 's/==/>=/g' requirements.txt && \
-    uv pip install -r requirements.txt && \
-    uv pip install -e .
+    uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt && \
+    uv pip install --extra-index-url https://pypi.org/simple -e .
 
 WORKDIR /opt/fastgen
 

@@ -15,7 +15,7 @@ WORKDIR /opt
 RUN git clone https://github.com/vladmandic/sdnext /opt/sdnext && \
     cd /opt/sdnext && \
     sed -i 's/==/>=/g' requirements.txt && \
-    uv pip install -r requirements.txt
+    uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt
 
 ENV SD_DATADIR="/mnt/data"
 ENV SD_MODELSDIR="/mnt/models"

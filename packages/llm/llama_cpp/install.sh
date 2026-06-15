@@ -10,7 +10,7 @@ apt-get clean
 
 
 
-uv pip install \
+uv pip install --extra-index-url https://pypi.org/simple \
         typing-extensions \
         uvicorn \
         anyio \
@@ -30,7 +30,7 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	echo "Forcing build of llama.cpp ${LLAMA_CPP_VERSION}"
 	exit 1
 fi
-if uv pip install --only-binary=:all: "llama-cpp-python==${LLAMA_CPP_VERSION_PY}"; then
+if uv pip install --extra-index-url https://pypi.org/simple --only-binary=:all: "llama-cpp-python==${LLAMA_CPP_VERSION_PY}"; then
 	if [ -n "${LLAMA_CPP_VERSION}" ]; then
 		tarpack install "llama-cpp-${LLAMA_CPP_VERSION}" || true
 	fi

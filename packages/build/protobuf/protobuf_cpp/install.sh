@@ -18,8 +18,8 @@ apt-get install -y --no-install-recommends \
 rm -rf /var/lib/apt/lists/*
 apt-get clean
 
-uv pip install tzdata
-uv pip install 'setuptools<72'  # setup.py invalid command 'test'
+uv pip install --extra-index-url https://pypi.org/simple tzdata
+uv pip install --extra-index-url https://pypi.org/simple 'setuptools<72'  # setup.py invalid command 'test'
 
 cd /tmp
 
@@ -64,7 +64,7 @@ if [ -d "python" ] && [ -f "python/setup.py" ]; then
 	python3 setup.py bdist_wheel --cpp_implementation
 
 	cp dist/*.whl /opt
-	uv pip install /opt/protobuf*.whl
+	uv pip install --extra-index-url https://pypi.org/simple /opt/protobuf*.whl
 	cd ..
 else
 	echo "Warning: python directory or setup.py not found, skipping Python bindings build"
@@ -78,5 +78,5 @@ rm -rf ${PROTOBUF_DIR}
 rm -rf ${PROTOC_DIR}
 
 #python3 setup.py install --cpp_implementation && \
-#uv pip install protobuf==${PROTOBUF_VERSION} --install-option="--cpp_implementation"
+#uv pip install --extra-index-url https://pypi.org/simple protobuf==${PROTOBUF_VERSION} --install-option="--cpp_implementation"
 #uv pip show protobuf && protoc --version

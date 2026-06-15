@@ -30,7 +30,7 @@ def isaac_ros(repo, version='4.4', base_url=ISAAC_ROS_URL, workspace='/opt/isaac
 package = [
     isaac_ros('isaac_ros_common', dockerfile='Dockerfile'),
     isaac_ros('isaac_ros_nitros', depends=['cuda-python', 'cv-cuda:cpp']),
-    isaac_ros('isaac_ros_image_pipeline', depends=['isaac-ros:nitros', 'ffmpeg:git']),
+    isaac_ros('isaac_ros_image_pipeline', depends=['isaac-ros:nitros', 'ffmpeg:7.1']),
     isaac_ros('isaac_ros_dnn_inference', depends=['isaac-ros:image-pipeline']),
     isaac_ros('isaac_ros_compression', depends=['isaac-ros:image-pipeline']),
     isaac_ros('isaac_ros_visual_slam', depends=['isaac-ros:compression']),

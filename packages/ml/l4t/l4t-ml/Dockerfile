@@ -13,6 +13,6 @@
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
-RUN uv pip install scipy
-RUN uv pip install scikit-learn
-RUN uv pip install pandas
+RUN uv pip install --extra-index-url https://pypi.org/simple scipy
+RUN uv pip install --extra-index-url https://pypi.org/simple scikit-learn
+RUN uv pip install --extra-index-url https://pypi.org/simple pandas

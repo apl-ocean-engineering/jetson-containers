@@ -19,7 +19,7 @@ else
     export OPENCV_DEB="OpenCV-${OPENCV_VERSION}.tar.gz"
     export OPENCV_URL=${TAR_INDEX_URL}/${OPENCV_DEB}
     $ROOT/install_deb.sh
-    uv pip install opencv-contrib-python~=${OPENCV_VERSION}
+    uv pip install --extra-index-url https://pypi.org/simple opencv-contrib-python~=${OPENCV_VERSION}
 fi
 
 # In buildkit=1 mode, we cannot test the installation here

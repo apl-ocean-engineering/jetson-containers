@@ -6,5 +6,5 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install kernels==${KERNELS_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple kernels==${KERNELS_VERSION}
 uv pip show kernels && python3 -c 'import kernels'

@@ -13,8 +13,8 @@ FROM ${BASE_IMAGE}
 ARG NANOOWL_REPO=NVIDIA-AI-IOT/nanoowl \
     NANOOWL_BRANCH=main
 
-RUN uv pip install 'matplotlib<3.9' && \
-    uv pip install git+https://github.com/openai/CLIP.git && \
+RUN uv pip install --extra-index-url https://pypi.org/simple 'matplotlib<3.9' && \
+    uv pip install --extra-index-url https://pypi.org/simple git+https://github.com/openai/CLIP.git && \
     mkdir -p /root/.cache && \
     ln -sf /data/models/clip /root/.cache/clip
 

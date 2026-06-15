@@ -9,7 +9,7 @@
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
-RUN uv pip install openai pycurl
+RUN uv pip install --extra-index-url https://pypi.org/simple openai pycurl
 RUN python3 -c 'import openai; print(f"OpenAI API version: {openai.__version__}")'
 
 # https://github.com/ggerganov/llama.cpp/discussions/795

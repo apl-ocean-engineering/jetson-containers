@@ -25,9 +25,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 RUN npm install -g node-gyp
-# RUN uv pip install jupyter 'jupyterlab==4.2.0' && \
-# RUN uv pip install jupyter 'jupyterlab<4' && \
-#     uv pip install jupyterlab_widgets
+# RUN uv pip install --extra-index-url https://pypi.org/simple jupyter 'jupyterlab==4.2.0' && \
+# RUN uv pip install --extra-index-url https://pypi.org/simple jupyter 'jupyterlab<4' && \
+#     uv pip install --extra-index-url https://pypi.org/simple jupyterlab_widgets
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 # For ipywidget development
@@ -37,7 +37,7 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 #     rm -rf /var/lib/apt/lists/* && \
 #     apt-get clean
 # RUN nmp install -g yarn
-# RUN uv pip install jupyter_packaging
+# RUN uv pip install --extra-index-url https://pypi.org/simple jupyter_packaging
 
 WORKDIR /opt
 
@@ -49,16 +49,16 @@ RUN git clone https://github.com/jaybdub/jupyter_clickable_image_widget && \
 # RUN git clone https://github.com/tokk-nv/jupyter_clickable_image_widget/ && \
 #     cd jupyter_clickable_image_widget && \
 #     git checkout dev-ipywidgets8 && \
-    uv pip install . && \
+    uv pip install --extra-index-url https://pypi.org/simple . && \
     jupyter labextension install js && \
     jupyter lab build
 # COPY ipyclick_tokknv /opt/jupyter_clickable_image_widget
 # RUN cd /opt/jupyter_clickable_image_widget && \
-#     uv pip install . && \
+#     uv pip install --extra-index-url https://pypi.org/simple . && \
 #     jupyter labextension install js && \
 #     jupyter lab build
 
-# RUN uv pip install 'ipywidgets<8'
+# RUN uv pip install --extra-index-url https://pypi.org/simple 'ipywidgets<8'
 RUN uv pip list
 RUN jupyter --version
 RUN jupyter labextension list

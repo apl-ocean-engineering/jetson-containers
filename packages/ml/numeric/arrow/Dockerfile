@@ -38,7 +38,7 @@ RUN cd /opt/arrow/cpp && \
     make -j$(nproc) && \
     make install
 
-#RUN uv pip install -r /opt/arrow/python/requirements-wheel-build.txt
+#RUN uv pip install --extra-index-url https://pypi.org/simple -r /opt/arrow/python/requirements-wheel-build.txt
 
 RUN export PYARROW_WITH_CUDA=1 && \
     export PYARROW_WITH_HDFS=1 && \
@@ -52,5 +52,5 @@ RUN export PYARROW_WITH_CUDA=1 && \
     python3 setup.py bdist_wheel && \
     cp dist/*.whl /opt
 
-RUN uv pip install /opt/pyarrow*.whl
+RUN uv pip install --extra-index-url https://pypi.org/simple /opt/pyarrow*.whl
 RUN uv pip show pyarrow && python3 -c 'import pyarrow; print(pyarrow.__version__);'

@@ -6,5 +6,5 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install causal_conv1d==${CASUALCONV1D_VERSION} || \
-uv pip install causal_conv1d==${CASUALCONV1D_VERSION_SPEC}
+uv pip install --extra-index-url https://pypi.org/simple causal_conv1d==${CASUALCONV1D_VERSION} || \
+uv pip install --extra-index-url https://pypi.org/simple causal_conv1d==${CASUALCONV1D_VERSION_SPEC}

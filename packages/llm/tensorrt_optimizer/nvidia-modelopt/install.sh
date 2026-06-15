@@ -6,4 +6,4 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install nvidia-modelopt==${NVIDIA_MODELOPT_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple nvidia-modelopt==${NVIDIA_MODELOPT_VERSION}

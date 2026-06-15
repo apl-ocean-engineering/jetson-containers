@@ -25,7 +25,7 @@ fi
 
 apt-get update
 apt-get install -y --no-install-recommends \
-  curl ca-certificates
+  curl ca-certificates python3-pip
 
 # Install uv (default location: ~/.local/bin/uv)
 curl -fsSL https://astral.sh/uv/install.sh | sh
@@ -63,14 +63,14 @@ which python
 python --version
 
 # Upgrade pip and base utilities
-uv pip install --upgrade --index-url "${PIP_INDEX_URL}" pip pkginfo
+uv pip install --upgrade --index-url "${PIP_INDEX_URL}" --extra-index-url https://pypi.org/simple pip pkginfo
 
 which pip || true
 pip --version || true
 
 # Install core dependencies
-uv pip install --no-binary :all: psutil
-uv pip install --upgrade \
+uv pip install --extra-index-url https://pypi.org/simple --no-binary :all: psutil
+uv pip install --extra-index-url https://pypi.org/simple --upgrade \
   "setuptools<=81" \
   packaging \
   Cython \
@@ -79,7 +79,7 @@ uv pip install --upgrade \
   nvidia-ml-py
 
 # Install publishing tool
-uv pip install --upgrade --index-url "${PIP_INDEX_URL}" twine
+uv pip install --upgrade --index-url "${PIP_INDEX_URL}" --extra-index-url https://pypi.org/simple twine
 
 # Cleanup
 rm -rf /var/lib/apt/lists/*

@@ -15,5 +15,5 @@ if [ "$FORCE_BUILD" == "on" ]; then
 fi
 "ai-mooncake[all]"
 
-uv pip install "mooncake-transfer-engine~=${MOONCAKE_VERSION}" || \
-uv pip install "mooncake-transfer-engine~=${MOONCAKE_VERSION_SPEC}"
+uv pip install --extra-index-url https://pypi.org/simple "mooncake-transfer-engine~=${MOONCAKE_VERSION}" || \
+uv pip install --extra-index-url https://pypi.org/simple "mooncake-transfer-engine~=${MOONCAKE_VERSION_SPEC}"

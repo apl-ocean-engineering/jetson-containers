@@ -27,8 +27,8 @@ RUN git clone https://github.com/${TTS_REPO} ${TTS_PATH} && \
     sed 's|answer[[:space:]]*=.*|answer=\"y\"|' -i TTS/utils/manage.py && \
     cat requirements.txt && \
     \
-    uv pip install --reinstall blinker && \
-    uv pip install -r requirements.txt && \
+    uv pip install --extra-index-url https://pypi.org/simple --reinstall blinker && \
+    uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt && \
     \
     python3 setup.py --verbose bdist_wheel && \
     cp dist/TTS*.whl /opt && \
@@ -37,7 +37,7 @@ RUN git clone https://github.com/${TTS_REPO} ${TTS_PATH} && \
     ln -s /data/models/tts /root/.local/share/tts
 
 # https://github.com/huggingface/transformers/issues/31040
-RUN uv pip install --force-reinstall 'transformers<4.41'
+RUN uv pip install --extra-index-url https://pypi.org/simple --force-reinstall 'transformers<4.41'
 
-RUN uv pip install /opt/TTS*.whl && \
+RUN uv pip install --extra-index-url https://pypi.org/simple /opt/TTS*.whl && \
     uv pip show TTS && python3 -c 'import TTS'

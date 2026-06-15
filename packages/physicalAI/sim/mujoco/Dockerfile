@@ -13,6 +13,6 @@ RUN apt-get update && \
 		  libglfw*-dev \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean \
-    && uv pip install mujoco
+    && uv pip install --extra-index-url https://pypi.org/simple mujoco
 
 ENV MUJOCO_GL=egl

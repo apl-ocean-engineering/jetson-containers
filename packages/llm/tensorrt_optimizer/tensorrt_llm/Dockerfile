@@ -52,8 +52,8 @@ COPY build.sh install.sh /tmp/setup/
 
 RUN /tmp/setup/install.sh || /tmp/setup/build.sh #|| echo "BUILD FAILED!"
 
-RUN uv pip install --upgrade transformers && \
-    uv pip install uvicorn fastapi
+RUN uv pip install --extra-index-url https://pypi.org/simple --upgrade transformers && \
+    uv pip install --extra-index-url https://pypi.org/simple uvicorn fastapi
 
 COPY llama.sh ${SOURCE_DIR}/
 

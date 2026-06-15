@@ -6,4 +6,4 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install nvdiffrast==${NVDIFFRAST_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple nvdiffrast==${NVDIFFRAST_VERSION}

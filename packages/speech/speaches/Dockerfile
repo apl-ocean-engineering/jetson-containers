@@ -22,7 +22,7 @@ RUN set -ex && \
     echo "👁️######## speaches - pyproject.toml ########👁️" && \
     cat pyproject.toml && \
     echo "👁️^^^^^^^^ speaches - pyproject.toml ^^^^^^^^👁️" && \
-    uv pip install '.[ui]' && \
+    uv pip install --extra-index-url https://pypi.org/simple '.[ui]' && \
     cp /opt/speaches/model_aliases.json / && \
     uv pip uninstall onnxruntime onnxruntime-gpu || true
 
@@ -39,7 +39,7 @@ print('🌃 faster-whisper:', version('faster-whisper'), \
 ENV PYTHONPATH="/opt/speaches/src:${PYTHONPATH}"
 
 
-RUN uv pip install openai aiostream && \
+RUN uv pip install --extra-index-url https://pypi.org/simple openai aiostream && \
     python3 -c "import speaches; print('✅ all modules import OK')"
 
 # 4. Confirm ONNX Runtime is correct

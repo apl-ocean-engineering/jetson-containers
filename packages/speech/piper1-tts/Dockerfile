@@ -18,5 +18,5 @@ ENV PIPER_CACHE=/data/models/piper
 
 COPY *.sh ${TMP_DIR}/
 
-RUN uv pip install --no-cache-dir --verbose 'flask>=3,<4' \
+RUN uv pip install --extra-index-url https://pypi.org/simple --no-cache-dir --verbose 'flask>=3,<4' \
     && ${TMP_DIR}/install.sh || ${TMP_DIR}/build.sh

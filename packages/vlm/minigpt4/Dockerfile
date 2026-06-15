@@ -48,8 +48,8 @@ RUN git clone --branch=${MINIGPT4_CPP_BRANCH} --depth=1 --recursive https://gith
 RUN cd minigpt4.cpp/build && \
     cmake --build . --config Release --parallel $(nproc)
 
-RUN uv pip install -r minigpt4.cpp/minigpt4/requirements.txt
-RUN uv pip install gradio>=3.38.0
+RUN uv pip install --extra-index-url https://pypi.org/simple -r minigpt4.cpp/minigpt4/requirements.txt
+RUN uv pip install --extra-index-url https://pypi.org/simple gradio>=3.38.0
 
 COPY benchmark.py minigpt4.cpp/minigpt4/
 

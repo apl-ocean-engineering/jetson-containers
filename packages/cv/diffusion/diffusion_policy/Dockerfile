@@ -16,9 +16,9 @@ WORKDIR /opt/diffusion_policy
 RUN git clone --depth=1 https://github.com/real-stanford/diffusion_policy .
 COPY requirements.txt ./
 
-RUN uv pip install -r requirements.txt
-RUN uv pip install 'protobuf==3.20.2' 'accelerate'
-RUN uv pip install -e .
+RUN uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt
+RUN uv pip install --extra-index-url https://pypi.org/simple 'protobuf==3.20.2' 'accelerate'
+RUN uv pip install --extra-index-url https://pypi.org/simple -e .
 
 COPY *.ipynb ./notebooks/
 

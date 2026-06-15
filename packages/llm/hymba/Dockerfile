@@ -12,7 +12,7 @@ FROM ${BASE_IMAGE}
 
 WORKDIR /opt
 
-RUN uv pip install einops
+RUN uv pip install --extra-index-url https://pypi.org/simple einops
 # Clona el repositorio de Diffusers
 RUN git clone https://github.com/NVlabs/hymba.git && \
     cd hymba \

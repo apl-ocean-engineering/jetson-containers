@@ -6,4 +6,4 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install xattn==${XATTENTION_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple xattn==${XATTENTION_VERSION}

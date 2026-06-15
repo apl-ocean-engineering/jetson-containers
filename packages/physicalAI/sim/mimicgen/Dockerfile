@@ -12,4 +12,4 @@ ADD https://api.github.com/repos/dusty-nv/mimicgen/git/refs/heads/main /tmp/mimi
 
 RUN git clone --depth=1 --recursive https://github.com/dusty-nv/mimicgen /opt/mimicgen && \
     cd /opt/mimicgen && \
-    uv pip install -e .
+    uv pip install --extra-index-url https://pypi.org/simple -e .

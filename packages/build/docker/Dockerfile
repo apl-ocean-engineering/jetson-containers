@@ -25,4 +25,4 @@ RUN apt-get update && \
 
 # so that we can run jetson-containers script from within containers
 ADD https://raw.githubusercontent.com/dusty-nv/jetson-containers/master/requirements.txt /tmp/container_requirements.txt
-RUN uv pip install -r /tmp/container_requirements.txt
+RUN uv pip install --extra-index-url https://pypi.org/simple -r /tmp/container_requirements.txt

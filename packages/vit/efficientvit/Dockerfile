@@ -18,10 +18,10 @@ RUN git clone https://github.com/mit-han-lab/efficientvit && \
     sed -i 's/~=/>=/g' requirements.txt && \
     sed 's|^git+https://github.com/facebookresearch/segment-anything.git||g' -i requirements.txt && \
     cat requirements.txt && \
-    uv pip install -r requirements.txt
+    uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt
 
 # RUN cd /opt/efficientvit && \
-#     uv pip install .
+#     uv pip install --extra-index-url https://pypi.org/simple .
 
 COPY benchmark.py /opt/efficientvit
 

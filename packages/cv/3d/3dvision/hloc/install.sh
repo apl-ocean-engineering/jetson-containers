@@ -54,5 +54,5 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install hloc==${HLOC_VERSION}
-uv pip install -U --force-reinstall opencv-contrib-python
+uv pip install --extra-index-url https://pypi.org/simple hloc==${HLOC_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple -U --force-reinstall opencv-contrib-python

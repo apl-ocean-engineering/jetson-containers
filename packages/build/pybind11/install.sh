@@ -18,9 +18,9 @@ rm $PYBIND_SHARE_CMAKE/*.cmake
 rm -rf $PYBIND_INCLUDE_DIR
 
 if [ -n "$PYBIND11_VERSION" ]; then
-    uv pip install --upgrade "pybind11[global]==$PYBIND11_VERSION"
+    uv pip install --extra-index-url https://pypi.org/simple --upgrade "pybind11[global]==$PYBIND11_VERSION"
 else
-    uv pip install --upgrade "pybind11[global]"
+    uv pip install --extra-index-url https://pypi.org/simple --upgrade "pybind11[global]"
 fi
 
 PYTHON_ROOT="$(uv pip show pybind11 | grep Location: | cut -d' ' -f2)"

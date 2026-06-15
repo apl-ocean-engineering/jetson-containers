@@ -6,4 +6,4 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install flex_prefill==${FLEXPREFILL_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple flex_prefill==${FLEXPREFILL_VERSION}

@@ -9,7 +9,7 @@ if [ "$FORCE_BUILD" == "on" ]; then
 fi
 
 echo "Installing wyoming-piper ${WYOMING_PIPER_VERSION}..."
-uv pip install wyoming_piper==${WYOMING_PIPER_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple wyoming_piper==${WYOMING_PIPER_VERSION}
 
 uv pip show wyoming_piper
 python3 -c 'import wyoming_piper; print(wyoming_piper.__version__);'

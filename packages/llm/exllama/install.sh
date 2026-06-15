@@ -9,6 +9,6 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install exllamav3==${EXLLAMA_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple exllamav3==${EXLLAMA_VERSION}
 
 python3 -c 'import exllamav3; print(exllamav3.__version__);'

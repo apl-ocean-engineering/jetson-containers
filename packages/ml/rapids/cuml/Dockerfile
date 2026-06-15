@@ -32,8 +32,8 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
-RUN uv pip install scikit-build && \
-    uv pip install ninja
+RUN uv pip install --extra-index-url https://pypi.org/simple scikit-build && \
+    uv pip install --extra-index-url https://pypi.org/simple ninja
 
 
 # build libcuml (C++)
@@ -48,10 +48,10 @@ RUN cd cuml/python && \
     sed -i "s|get_versions().*|\"${CUML_VERSION}\".lstrip('v')|g" cuml/__init__.py && \
     python3 setup.py --verbose build_ext -j$(nproc) --singlegpu bdist_wheel && \
     cp dist/cuml*.whl /opt && \
-    uv pip install /opt/cuml*.whl
+    uv pip install --extra-index-url https://pypi.org/simple /opt/cuml*.whl
 
 # cuml/decomposition/pca.pyx:  No module named 'scipy'
-RUN uv pip install scipy scikit-learn treelite treelite_runtime
+RUN uv pip install --extra-index-url https://pypi.org/simple scipy scikit-learn treelite treelite_runtime
 
 # make sure it loads
 RUN uv pip show cuml && python3 -c 'import cuml; print(cuml.__version__)'

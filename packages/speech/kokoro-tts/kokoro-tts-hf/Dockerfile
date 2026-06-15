@@ -19,11 +19,11 @@ RUN apt-get update && \
 
 ENV BLIS_ARCH="generic"
 
-RUN uv pip install loguru IPython
+RUN uv pip install --extra-index-url https://pypi.org/simple loguru IPython
 RUN git clone https://github.com/hexgrad/misaki /opt/misaki && \
     cd /opt/misaki && \
-    uv pip install -e .
+    uv pip install --extra-index-url https://pypi.org/simple -e .
 
 RUN git clone https://github.com/hexgrad/kokoro /opt/kokoro && \
     cd /opt/kokoro && \
-    uv pip install -e .
+    uv pip install --extra-index-url https://pypi.org/simple -e .

@@ -6,6 +6,6 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install onnxruntime_genai==${ONNXRUNTIME_GENAI_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple onnxruntime_genai==${ONNXRUNTIME_GENAI_VERSION}
 
 python3 -c 'import onnxruntime_genai; print(onnxruntime_genai.__version__);'

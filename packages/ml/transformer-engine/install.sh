@@ -6,4 +6,4 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install transformer-engine==${TRANSFORMER_ENGINE_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple transformer-engine==${TRANSFORMER_ENGINE_VERSION}

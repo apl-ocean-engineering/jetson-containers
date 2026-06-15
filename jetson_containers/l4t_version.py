@@ -130,6 +130,7 @@ def get_jetpack_version(l4t_version: str = None, default='7.2'):
 
     NVIDIA_JETPACK = {
         # -------- JP7 --------
+        "39.2.0": "7.2",
         "39.1.0": "7.2 GA",  # Orin SBSA
         "39.0.0": "7.2 EA", # Orin SBSA
         "38.4.0": "7.1", # Q4 2025 T400 Support

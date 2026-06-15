@@ -6,4 +6,4 @@ if [ "$FORCE_BUILD" == "on" ]; then
 	exit 1
 fi
 
-uv pip install tinycudann==${TINYCUDANN_VERSION}
+uv pip install --extra-index-url https://pypi.org/simple tinycudann==${TINYCUDANN_VERSION}

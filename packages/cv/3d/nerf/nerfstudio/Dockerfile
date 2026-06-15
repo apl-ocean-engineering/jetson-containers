@@ -40,7 +40,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN cd /opt/
-RUN uv pip install build wheel
+RUN uv pip install --extra-index-url https://pypi.org/simple build wheel
 RUN export MAKEFLAGS="-j$(nproc)"
 
 # Add glog path to LD_LIBRARY_PATH.

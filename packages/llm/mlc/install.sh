@@ -10,14 +10,14 @@ torch_version=$(python3 -c 'import torch; print(torch.__version__)')
 
 # install the wheels
 if [[ -n "$(ls /tmp/mlc/*.whl)" ]]; then
-    uv pip install /tmp/mlc/*.whl
+    uv pip install --extra-index-url https://pypi.org/simple /tmp/mlc/*.whl
 else
-    uv pip install tvm==${TVM_VERSION} mlc-llm==${MLC_VERSION}
-    uv pip install mlc-chat==${MLC_VERSION} || echo "failed to pip install mlc-chat==${MLC_VERSION} (this is expected for mlc>=0.1.1)"
+    uv pip install --extra-index-url https://pypi.org/simple tvm==${TVM_VERSION} mlc-llm==${MLC_VERSION}
+    uv pip install --extra-index-url https://pypi.org/simple mlc-chat==${MLC_VERSION} || echo "failed to pip install mlc-chat==${MLC_VERSION} (this is expected for mlc>=0.1.1)"
 fi
 
 # restore versions from the build
-uv pip install 'pydantic>2' torch==$torch_version
+uv pip install --extra-index-url https://pypi.org/simple 'pydantic>2' torch==$torch_version
 
 # we need the source because the MLC model builder relies on it
 git clone https://github.com/mlc-ai/mlc-llm ${SOURCE_DIR}

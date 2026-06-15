@@ -13,8 +13,8 @@ ADD https://api.github.com/repos/dusty-nv/clip_trt/git/refs/heads/main /tmp/clip
 
 RUN git clone https://github.com/dusty-nv/clip_trt /opt/clip_trt && \
     cd /opt/clip_trt && \
-    uv pip install -r requirements.txt && \
-    uv pip install -e . && \
+    uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt && \
+    uv pip install --extra-index-url https://pypi.org/simple -e . && \
     uv pip show clip_trt && \
     mkdir -p ~/.cache && \
     ln -s /data/models/clip ~/.cache/clip_trt

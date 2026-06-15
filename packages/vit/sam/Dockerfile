@@ -11,13 +11,13 @@ FROM ${BASE_IMAGE}
 
 WORKDIR /opt
 
-RUN uv pip install matplotlib pycocotools tqdm
+RUN uv pip install --extra-index-url https://pypi.org/simple matplotlib pycocotools tqdm
 
 # Clone the repository:
 RUN git clone https://github.com/facebookresearch/segment-anything && \
     cd segment-anything && \
     sed 's|, "onnx.*"||' -i setup.py && \
-    uv pip install .
+    uv pip install --extra-index-url https://pypi.org/simple .
 
 ENV PYTHONPATH=${PYTHONPATH}:/opt/segment-anything
 

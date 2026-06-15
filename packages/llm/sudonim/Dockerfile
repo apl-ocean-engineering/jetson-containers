@@ -14,7 +14,7 @@ ARG SUDONIM_SOURCE_DIR=/opt/sudonim \
 ADD https://api.github.com/repos/dusty-nv/sudonim/git/refs/heads/main /tmp/sudonim_version.json
 
 RUN git clone https://github.com/dusty-nv/sudonim ${SUDONIM_SOURCE_DIR} && \
-    uv pip install -e ${SUDONIM_SOURCE_DIR}
+    uv pip install --extra-index-url https://pypi.org/simple -e ${SUDONIM_SOURCE_DIR}
 
 COPY patches ${SUDONIM_SOURCE_DIR}/patches/
 

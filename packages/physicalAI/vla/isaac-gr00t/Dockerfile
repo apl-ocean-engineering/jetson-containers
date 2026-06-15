@@ -26,9 +26,9 @@ RUN git clone --recursive https://github.com/NVIDIA/Isaac-GR00T /opt/Isaac-GR00T
     sed -i 's/==/>=/g' pyproject.toml && \
     # fix invalid wildcard after global replace
     sed -i 's/^requires-python = ">=3\.10\.\*"/requires-python = ">=3.10"/' pyproject.toml && \
-    uv pip install -U decord2 diffusers pyzmq && \
-    uv pip install -e . && \
-    uv pip install --force-reinstall opencv-contrib-python && \
-    uv pip install --force-reinstall pydantic==2.10.6 && \
-    uv pip install --force-reinstall transformers==4.51.3 && \
+    uv pip install --extra-index-url https://pypi.org/simple -U decord2 diffusers pyzmq && \
+    uv pip install --extra-index-url https://pypi.org/simple -e . && \
+    uv pip install --extra-index-url https://pypi.org/simple --force-reinstall opencv-contrib-python && \
+    uv pip install --extra-index-url https://pypi.org/simple --force-reinstall pydantic==2.10.6 && \
+    uv pip install --extra-index-url https://pypi.org/simple --force-reinstall transformers==4.51.3 && \
     /tmp/numpy/install.sh
