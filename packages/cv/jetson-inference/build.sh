@@ -41,10 +41,10 @@ cmake ../
 make
 
 # install optional dependencies
-uv pip install --reinstall blinker
-uv pip install -r $source_dir/python/training/detection/ssd/requirements.txt
-uv pip install -r $source_dir/python/www/flask/requirements.txt
-uv pip install -r $source_dir/python/www/dash/requirements.txt
+uv pip install --extra-index-url https://pypi.org/simple --reinstall blinker
+uv pip install --extra-index-url https://pypi.org/simple -r $source_dir/python/training/detection/ssd/requirements.txt
+uv pip install --extra-index-url https://pypi.org/simple -r $source_dir/python/www/flask/requirements.txt
+uv pip install --extra-index-url https://pypi.org/simple -r $source_dir/python/www/dash/requirements.txt
 
 # compatability with original jetson-inference location
 ln -s ${source_dir} /jetson-inference

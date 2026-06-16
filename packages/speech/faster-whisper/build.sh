@@ -16,10 +16,10 @@ sed -i \
 
 echo "__version__ = \"${FASTER_WHISPER_VERSION}\"" > faster_whisper/version.py
 
-uv pip install -U -r requirements.txt
+uv pip install --extra-index-url https://pypi.org/simple -U -r requirements.txt
 
 python3 setup.py --verbose bdist_wheel --dist-dir $PIP_WHEEL_DIR
-uv pip install $PIP_WHEEL_DIR/faster_whisper*.whl
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/faster_whisper*.whl
 
 uv pip show faster_whisper
 python3 -c 'import faster_whisper; print(faster_whisper.__version__);'

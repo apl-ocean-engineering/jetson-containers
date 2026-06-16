@@ -11,8 +11,8 @@ cd /opt/transformer_engine
 # git apply /tmp/TRANSFORMER_ENGINE/patch.diff
 # git diff
 # git status
-uv pip install nvidia-mathdx
-uv pip install --upgrade pip setuptools wheel pybind11[global] scikit-build cmake ninja
+uv pip install --extra-index-url https://pypi.org/simple nvidia-mathdx
+uv pip install --extra-index-url https://pypi.org/simple --upgrade pip setuptools wheel pybind11[global] scikit-build cmake ninja
 export NVTE_FRAMEWORK=pytorch
 
 if [[ "${TORCH_CUDA_ARCH_LIST}" == "8.7" ]]; then
@@ -25,7 +25,7 @@ MAX_JOBS=$(nproc) \
 NVTE_FRAMEWORK=pytorch \
 NVTE_CUDA_ARCHS=$NVTE_CUDA_ARCHS \
 uv build --wheel --no-build-isolation . --out-dir /opt/transformer_engine/wheels --verbose
-uv pip install /opt/transformer_engine/wheels/transformer_engine*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/transformer_engine/wheels/transformer_engine*.whl
 
 cd /opt/transformer_engine
 

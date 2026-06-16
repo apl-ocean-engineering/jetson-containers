@@ -19,7 +19,7 @@ cp libdecord.so ..
 cd ../python
 
 uv build --wheel --no-build-isolation --out-dir /opt/decord/wheels .
-uv pip install /opt/decord/wheels/decord*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/decord/wheels/decord*.whl
 cd /opt/decord
 
 # Optionally upload to a repository using Twine

@@ -38,6 +38,6 @@ make -j$(nproc)
 cd /opt/tvm/python
 uv build --wheel --out-dir /opt/tvm/wheels .
 
-uv pip install /opt/tvm/wheels/tvm-*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/tvm/wheels/tvm-*.whl
 
 twine upload --verbose dist/tvm-*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

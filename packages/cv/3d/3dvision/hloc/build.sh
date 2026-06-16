@@ -13,8 +13,8 @@ sed -i '/opencv-python/d' requirements.txt
 
 # Build & install the HLOC python wheel
 uv build --wheel --no-build-isolation . --out-dir $PIP_WHEEL_DIR --verbose
-uv pip install $PIP_WHEEL_DIR/hloc*.whl
-uv pip install -U --force-reinstall opencv-contrib-python
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/hloc*.whl
+uv pip install --extra-index-url https://pypi.org/simple -U --force-reinstall opencv-contrib-python
 
 # Optionally upload to a repository using Twine
 twine upload --verbose $PIP_WHEEL_DIR/hloc*.whl || echo "Failed to upload wheel to ${TWINE_REPOSITORY_URL}"

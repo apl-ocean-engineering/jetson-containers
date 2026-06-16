@@ -23,7 +23,7 @@ python3 setup.py --verbose build_ext --inplace -j$(nproc) bdist_wheel --dist-dir
 
 ls -l $PIP_WHEEL_DIR
 
-uv pip install scipy
-uv pip install $PIP_WHEEL_DIR/bitsandbytes*.whl
+uv pip install --extra-index-url https://pypi.org/simple scipy
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/bitsandbytes*.whl
 
 twine upload --verbose $PIP_WHEEL_DIR/bitsandbytes*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

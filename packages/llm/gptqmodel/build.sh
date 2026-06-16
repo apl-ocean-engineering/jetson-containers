@@ -13,7 +13,7 @@ export CMAKE_BUILD_PARALLEL_LEVEL=$MAX_JOBS
 echo "Building with MAX_JOBS=$MAX_JOBS and CMAKE_BUILD_PARALLEL_LEVEL=$CMAKE_BUILD_PARALLEL_LEVEL"
 python3 setup.py --verbose bdist_wheel --dist-dir /opt/gptqmodel/wheels/
 
-uv pip install /opt/gptqmodel/wheels/gptqmodel*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/gptqmodel/wheels/gptqmodel*.whl
 uv pip show auto-gptq && python3 -c 'import gptqmodel'
 
 twine upload --verbose /opt/gptqmodel/wheels/gptqmodel*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

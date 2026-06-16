@@ -9,7 +9,7 @@ git clone --depth=1 --recursive https://github.com/vipshop/cache-dit  /opt/cache
 cd /opt/cache_dit
 
 uv build --wheel . -v --no-deps --out-dir /opt/cache_dit/wheels/
-uv pip install /opt/cache_dit/wheels/cache_dit*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/cache_dit/wheels/cache_dit*.whl
 
 cd /opt/cache_dit
 

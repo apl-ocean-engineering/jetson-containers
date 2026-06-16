@@ -21,6 +21,6 @@ uv build --wheel . -v --no-build-isolation --out-dir /opt/multi-turboquant/wheel
 ls /opt/multi-turboquant/wheels
 cd /
 
-uv pip install /opt/multi-turboquant/wheels/multi_turboquant*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/multi-turboquant/wheels/multi_turboquant*.whl
 
 twine upload --verbose /opt/multi-turboquant/wheels/multi_turboquant*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

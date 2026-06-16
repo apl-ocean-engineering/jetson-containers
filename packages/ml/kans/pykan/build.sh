@@ -11,10 +11,10 @@ cd /opt/pykan
 # make the change directly in requirements.txt (GNU/BSD sed)
 sed -i 's/==/>=/g' requirements.txt
 
-uv pip install -U -r requirements.txt
+uv pip install --extra-index-url https://pypi.org/simple -U -r requirements.txt
 
 python3 setup.py bdist_wheel --dist-dir=/opt/pykan/wheels
-uv pip install /opt/pykan/wheels/pykan*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/pykan/wheels/pykan*.whl
 
 cd /opt/pykan
 

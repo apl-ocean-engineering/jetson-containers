@@ -114,7 +114,7 @@ python3 setup.py bdist_wheel --dist-dir /opt
 cd /
 rm -rf /opt/pytorch
 # install the compiled wheel
-uv pip install /opt/torch*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/torch*.whl
 python3 -c 'import torch; print(f"PyTorch {torch.__version__} installed successfully")'
 
 # Verify installation in detail

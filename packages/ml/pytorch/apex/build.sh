@@ -16,6 +16,6 @@ uv build --wheel \
   -C=--build-option=--cuda_ext \
   --out-dir /opt/apex/wheels \
   .
-uv pip install /opt/apex/wheels/apex*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/apex/wheels/apex*.whl
 
 twine upload --verbose /opt/apex/wheels/apex*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

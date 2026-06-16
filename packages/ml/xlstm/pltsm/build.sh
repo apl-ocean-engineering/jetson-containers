@@ -9,7 +9,7 @@ git clone --depth=1 --recursive https://github.com/ml-jku/plstm  /opt/plstm
 cd /opt/plstm
 
 uv build --wheel . -v --no-deps --out-dir /opt/plstm/wheels/
-uv pip install /opt/plstm/wheels/plstm*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/plstm/wheels/plstm*.whl
 
 cd /opt/plstm
 

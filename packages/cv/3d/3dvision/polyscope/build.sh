@@ -10,6 +10,6 @@ cd /opt/polyscope
 export MAX_JOBS=$(nproc)
 
 uv build --wheel . --out-dir $PIP_WHEEL_DIR -v
-uv pip install $PIP_WHEEL_DIR/polyscope*.whl
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/polyscope*.whl
 
 twine upload --verbose $PIP_WHEEL_DIR/polyscope*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

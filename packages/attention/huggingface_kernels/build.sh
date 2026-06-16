@@ -19,5 +19,5 @@ uv build --wheel . -v --out-dir /opt/huggingface_kernels/wheels/
 ls /opt
 cd /opt/
 
-uv pip install /opt/huggingface_kernels/wheels/kernels*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/huggingface_kernels/wheels/kernels*.whl
 twine upload --verbose /opt/huggingface_kernels/wheels/kernels*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

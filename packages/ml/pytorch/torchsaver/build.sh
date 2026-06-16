@@ -28,7 +28,7 @@ USE_CPP=1 python3 setup.py --verbose bdist_wheel --dist-dir /opt
 cd ../
 rm -rf /opt/torch_memory_saver
 
-uv pip install /opt/torch_memory_saver*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/torch_memory_saver*.whl
 uv pip show torch_memory_saver && python3 -c 'import torch_memory_saver'
 
 twine upload --verbose /opt/torch_memory_saver*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

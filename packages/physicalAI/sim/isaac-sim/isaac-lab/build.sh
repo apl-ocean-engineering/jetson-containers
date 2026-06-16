@@ -27,4 +27,4 @@ cd /opt/IsaacLab
 chmod a+x isaaclab.sh
 ./isaaclab.sh --install # or "./isaaclab.sh -i"
 
-uv pip install --force-reinstall torch torchvision torchaudio nvidia-cuda-nvrtc --index-url ${UV_DEFAULT_INDEX}
+uv pip install --extra-index-url https://pypi.org/simple --force-reinstall torch torchvision torchaudio nvidia-cuda-nvrtc --index-url ${UV_DEFAULT_INDEX}

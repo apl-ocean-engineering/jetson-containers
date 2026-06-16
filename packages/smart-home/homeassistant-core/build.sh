@@ -43,13 +43,13 @@ rm -rf /tmp/sqlite
 
 python3 -m sqlite3 -v
 
-uv pip install --reinstall blinker
-uv pip install uv==0.7.1 ruff
+uv pip install --extra-index-url https://pypi.org/simple --reinstall blinker
+uv pip install --extra-index-url https://pypi.org/simple uv==0.7.1 ruff
 
 # Install homeassistant-core
 git clone --branch=${HA_VERSION} https://github.com/home-assistant/core /usr/src/homeassistant
-uv pip install -r /usr/src/homeassistant/requirements_all.txt
-uv pip install -e /usr/src/homeassistant
+uv pip install --extra-index-url https://pypi.org/simple -r /usr/src/homeassistant/requirements_all.txt
+uv pip install --extra-index-url https://pypi.org/simple -e /usr/src/homeassistant
 python3 -m compileall /usr/src/homeassistant
 
 # Generate languages

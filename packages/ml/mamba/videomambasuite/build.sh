@@ -7,4 +7,4 @@ git clone --depth=1 --recursive https://github.com/OpenGVLab/video-mamba-suite /
 
 # Navigate to the directory containing mamba's setup.py
 cd /opt/videomambasuite
-uv pip install -r requirement.txt
+uv pip install --extra-index-url https://pypi.org/simple -r requirement.txt

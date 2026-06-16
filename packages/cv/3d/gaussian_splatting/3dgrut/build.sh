@@ -26,14 +26,14 @@ sed -i '/^--find-links/d' requirements.txt
 sed -i 's/kaolin==0.17.0/kaolin>=0.17.0/' requirements.txt
 sed -i '/^opencv-python$/d' requirements.txt
 
-uv pip install --no-build-isolation -r requirements.txt
-uv pip install --no-build-isolation -e .
+uv pip install --extra-index-url https://pypi.org/simple --no-build-isolation -r requirements.txt
+uv pip install --extra-index-url https://pypi.org/simple --no-build-isolation -e .
 
 MAX_JOBS=$(nproc) \
 uv build --wheel --no-build-isolation . --out-dir /opt/3dgrut/wheels --verbose
-# uv pip install /opt/3dgrut/wheels/threedgrut-*.whl
+# uv pip install --extra-index-url https://pypi.org/simple /opt/3dgrut/wheels/threedgrut-*.whl
 
 cd /opt/3dgrut
 # Optionally upload to a repository using Twine
 twine upload --verbose /opt/3dgrut/wheels/threedgrut-*.whl || echo "Failed to upload wheel to ${TWINE_REPOSITORY_URL}"
-uv pip install --force-reinstall opencv-contrib-python
+uv pip install --extra-index-url https://pypi.org/simple --force-reinstall opencv-contrib-python

@@ -12,14 +12,14 @@ cd /opt/fastvideo/fastvideo-kernel
 MAX_JOBS=$(nproc) \
 uv build --wheel . -v --no-deps --out-dir /opt/fastvideo/wheels/
 
-uv pip install /opt/fastvideo/wheels/fastvideo_kernel*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/fastvideo/wheels/fastvideo_kernel*.whl
 
 # Install the main fastvideo package
 cd /opt/fastvideo
 
-uv pip install --no-deps --no-build-isolation -e .
+uv pip install --extra-index-url https://pypi.org/simple --no-deps --no-build-isolation -e .
 
-uv pip install \
+uv pip install --extra-index-url https://pypi.org/simple \
     scipy six h5py requests \
     sentencepiece timm peft \
     accelerate pillow imageio imageio-ffmpeg einops \

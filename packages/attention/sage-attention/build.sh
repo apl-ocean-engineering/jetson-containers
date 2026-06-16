@@ -33,8 +33,8 @@ uv build --wheel . -v --no-build-isolation --out-dir /opt/sage-attention/wheels/
 
 cd /
 
-uv pip install /opt/sage-attention/wheels/sageattention*.whl
-uv pip install /opt/sage-attention/wheels/sageattn3*.whl || echo "Blackwell wheel install failed, skipping..."
+uv pip install --extra-index-url https://pypi.org/simple /opt/sage-attention/wheels/sageattention*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/sage-attention/wheels/sageattn3*.whl || echo "Blackwell wheel install failed, skipping..."
 
 twine upload --verbose /opt/sage-attention/wheels/sage-attention*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"
 twine upload --verbose /opt/sage-attention/wheels/sageattn3*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

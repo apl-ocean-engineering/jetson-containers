@@ -16,9 +16,9 @@ export LIBRARY_PATH=${CUDA_HOME}/lib64/stubs:${LIBRARY_PATH}
 
 cd $REPO_DIR
 sed -i '/numpy/d' requirements.txt
-uv pip install looseversion
-uv pip install -U -r requirements.txt
+uv pip install --extra-index-url https://pypi.org/simple looseversion
+uv pip install --extra-index-url https://pypi.org/simple -U -r requirements.txt
 uv build --wheel -v --no-build-isolation --out-dir $REPO_DIR .
-uv pip install /opt/cudnn_frontend/nvidia_cudnn_frontend-*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/cudnn_frontend/nvidia_cudnn_frontend-*.whl
 
 twine upload --verbose /opt/cudnn_frontend/nvidia_cudnn_frontend-*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

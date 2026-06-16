@@ -25,15 +25,15 @@ sed -i 's|flashinfer-python.*|flashinfer-python|' "${REQUIREMENTS_FILENAME}"
 sed -i 's|^torch.*|torch|' "${REQUIREMENTS_FILENAME}"
 sed -i 's|typing-extensions.*|typing-extensions|' "${DEV_REQUIREMENTS_FILENAME}"
 
-uv pip install -r "${REQUIREMENTS_FILENAME}" 
-uv pip install -r "${DEV_REQUIREMENTS_FILENAME}"
+uv pip install --extra-index-url https://pypi.org/simple -r "${REQUIREMENTS_FILENAME}" 
+uv pip install --extra-index-url https://pypi.org/simple -r "${DEV_REQUIREMENTS_FILENAME}"
 
 # Install TensorRT Wheel First to ensure libs are present
 TRT_WHEEL=$(find /usr -name "tensorrt-*-cp310-*-linux_aarch64.whl" -print -quit)
 
 if [ -f "$TRT_WHEEL" ]; then
     echo "Installing existing TensorRT wheel: $TRT_WHEEL"
-    uv pip install "$TRT_WHEEL"
+    uv pip install --extra-index-url https://pypi.org/simple "$TRT_WHEEL"
 else
     echo "CRITICAL: TensorRT wheel not found. Build cannot proceed."
     exit 1
@@ -118,7 +118,7 @@ if [ -d "$CUTLASS_PYTHON_DIR" ]; then
     fi
 
     echo "Installing CUTLASS into venv..."
-    uv pip install . || exit 1
+    uv pip install --extra-index-url https://pypi.org/simple . || exit 1
 
     echo "Injecting skip logic into setup script..."
     
@@ -145,7 +145,7 @@ python3 ${SOURCE_DIR}/scripts/build_wheel.py \
         --use_ccache \
         --trt_root /usr/local/tensorrt
 
-uv pip install $PIP_WHEEL_DIR/tensorrt_llm*.whl
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/tensorrt_llm*.whl
 
 #uv pip show tensorrt_llm
 #python3 -c "import tensorrt_llm; print(tensorrt_llm.__version__)"

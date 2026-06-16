@@ -79,7 +79,7 @@ cd ../
 rm -rf /opt/torchcodec
 
 # --- Install and verify ---
-uv pip install /opt/torchcodec*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/torchcodec*.whl
 uv pip show torchcodec && python3 -c 'import torchcodec; print(torchcodec.__version__);'
 
 # --- Upload (if configured) ---

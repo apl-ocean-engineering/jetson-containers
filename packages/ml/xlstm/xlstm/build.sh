@@ -10,7 +10,7 @@ cd /opt/xlstm
 
 export XLSTM_EXTRA_INCLUDE_PATHS='/usr/local/include/cuda/:/usr/include/cuda/'
 uv build --wheel . -v --no-deps --out-dir /opt/xlstm/wheels/
-uv pip install /opt/xlstm/wheels/xlstm*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/xlstm/wheels/xlstm*.whl
 
 cd /opt/xlstm
 

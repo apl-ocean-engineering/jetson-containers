@@ -7,9 +7,9 @@ git clone --depth=1 --recursive https://github.com/johnnynunez/MambaVision /opt/
 
 # Navigate to the directory containing mamba's setup.py
 cd /opt/mambavision
-uv pip install -U einops timm
+uv pip install --extra-index-url https://pypi.org/simple -U einops timm
 uv build --wheel --no-build-isolation --no-deps --out-dir /opt/mambavision/wheels .
-uv pip install /opt/mambavision/wheels/mambavision*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/mambavision/wheels/mambavision*.whl
 
 cd /opt/mambavision
 

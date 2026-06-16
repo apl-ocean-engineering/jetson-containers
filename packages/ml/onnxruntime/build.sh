@@ -141,7 +141,7 @@ ls -ll dist
 cp dist/onnxruntime*.whl /opt
 cd /
 
-uv pip install /opt/onnxruntime*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/onnxruntime*.whl
 python3 -c 'import onnxruntime; print(onnxruntime.__version__);'
 
 twine upload --verbose /opt/onnxruntime*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

@@ -88,7 +88,7 @@ export MAX_JOBS="$(nproc)"
 # Build & install pyceres
 # ----------------------------
 uv build --wheel . --out-dir "${PIP_WHEEL_DIR}" --verbose
-uv pip install "${PIP_WHEEL_DIR}"/pyceres*.whl
+uv pip install --extra-index-url https://pypi.org/simple "${PIP_WHEEL_DIR}"/pyceres*.whl
 
 # ----------------------------
 # Optional upload

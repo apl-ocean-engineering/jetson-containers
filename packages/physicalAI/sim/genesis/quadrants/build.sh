@@ -25,7 +25,7 @@ export CUDA_VERSION=13.2
 export LLVM_VERSION=22
 export LLVM_DIR=/usr/lib/llvm-${LLVM_VERSION}
 
-uv pip install "cmake<4"
+uv pip install --extra-index-url https://pypi.org/simple "cmake<4"
 # Build quadrants
 ./build.py
 # Check if the build succeeded
@@ -38,13 +38,13 @@ fi
 ls dist/*.whl || echo "⚠️ No wheel files found!"
 
 # Install the built quadrants package
-uv pip install /opt/quadrants/dist/*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/quadrants/dist/*.whl
 
 # CPU BACKEND MUST BE FIXED
 # python3 -c "import quadrants as ti; ti.init(arch=ti.cpu); print('✅ quadrants installed successfully!')"
 
 # Ensure numpy is installed
-uv pip install numpy
+uv pip install --extra-index-url https://pypi.org/simple numpy
 
 # Check if CUDA is available
 if ! python3 -c "import quadrants as ti; ti.init(arch=ti.cuda)"; then

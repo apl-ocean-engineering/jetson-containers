@@ -2,7 +2,7 @@
 # wyoming-whisper
 set -ex
 
-uv pip install -U \
+uv pip install --extra-index-url https://pypi.org/simple -U \
    build \
    wheel \
    zeroconf
@@ -18,7 +18,7 @@ python3 -m build --wheel --outdir $PIP_WHEEL_DIR
 cd /
 rm -rf /tmp/wyoming-faster-whisper
 
-uv pip install $PIP_WHEEL_DIR/wyoming_faster_whisper*.whl
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/wyoming_faster_whisper*.whl
 
 uv pip show wyoming_faster_whisper
 python3 -c 'import wyoming_faster_whisper; print(wyoming_faster_whisper.__version__);'

@@ -24,7 +24,7 @@ uv build --wheel . -v --no-build-isolation --out-dir /opt/mempalace/wheels/
 ls /opt/mempalace/wheels
 cd /
 
-uv pip install /opt/mempalace/wheels/mempalace*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/mempalace/wheels/mempalace*.whl
 
 twine upload --verbose /opt/mempalace/wheels/mempalace*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"
 

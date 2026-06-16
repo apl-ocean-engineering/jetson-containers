@@ -22,7 +22,7 @@ warn()    { printf "${YELLOW}⚠${RESET} %s\n" "$1"; }
 
 # ===== Deps =====
 apt update && apt install -y ccache
-uv pip install -U compressed-tensors decord2 ninja setuptools wheel numpy scikit-build-core twine
+uv pip install --extra-index-url https://pypi.org/simple -U compressed-tensors decord2 ninja setuptools wheel numpy scikit-build-core twine
 
 REPO_URL="https://github.com/sgl-project/sglang"
 REPO_DIR="/opt/sglang"
@@ -137,7 +137,7 @@ else
 fi
 
 section "Installing wheel"
-uv pip install "${PIP_WHEEL_DIR}/sgl"*.whl && ok "Wheel installed"
+uv pip install --extra-index-url https://pypi.org/simple "${PIP_WHEEL_DIR}/sgl"*.whl && ok "Wheel installed"
 
 cd "${REPO_DIR}" || exit 1
 

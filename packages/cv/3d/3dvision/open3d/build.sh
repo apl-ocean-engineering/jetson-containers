@@ -49,7 +49,7 @@ make -j$(nproc) pip-package
 mkdir -p "${PIP_WHEEL_DIR}"
 cp lib/python_package/pip_package/open3d*.whl "${PIP_WHEEL_DIR}"/
 
-uv pip install "${PIP_WHEEL_DIR}"/open3d*.whl
+uv pip install --extra-index-url https://pypi.org/simple "${PIP_WHEEL_DIR}"/open3d*.whl
 uv pip show open3d
 
 twine upload --verbose "${PIP_WHEEL_DIR}"/open3d*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

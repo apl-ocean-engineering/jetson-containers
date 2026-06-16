@@ -10,8 +10,8 @@ cd /opt/flexprefill
 
 sed -i 's/==/>=/g' extra_requirements.txt
 sed -i 's/transformers==/transformers>=/; s/triton==/triton>=/' setup.py
-uv pip install packaging
-uv pip install --reinstall blinker
+uv pip install --extra-index-url https://pypi.org/simple packaging
+uv pip install --extra-index-url https://pypi.org/simple --reinstall blinker
 
 
 export MAX_JOBS="$(nproc)"
@@ -25,6 +25,6 @@ python3 setup.py --verbose bdist_wheel --dist-dir /opt/flexprefill/wheels
 ls /opt/flexprefill/wheels
 cd /
 
-uv pip install /opt/flexprefill/wheels/flex_prefill*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/flexprefill/wheels/flex_prefill*.whl
 
 twine upload --verbose /opt/flexprefill/wheels/flex_prefill*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

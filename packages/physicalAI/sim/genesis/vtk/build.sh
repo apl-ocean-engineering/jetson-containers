@@ -28,10 +28,10 @@ cmake -GNinja \
       -DPython3_EXECUTABLE=$PYBIN ../
 ninja
 
-uv pip install wheel
+uv pip install --extra-index-url https://pypi.org/simple wheel
 # Build the wheel
 python3 setup.py bdist_wheel --dist-dir=$PIP_WHEEL_DIR --verbose
-uv pip install $PIP_WHEEL_DIR/vtk*.whl
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/vtk*.whl
 cd /opt/vtk
 # Optionally, upload the wheel using Twine (if configured)
 twine upload --verbose $PIP_WHEEL_DIR/vtk*.whl || echo "Failed to upload wheel to ${TWINE_REPOSITORY_URL}"

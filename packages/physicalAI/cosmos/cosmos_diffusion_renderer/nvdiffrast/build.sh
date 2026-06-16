@@ -8,10 +8,10 @@ git clone --recursive https://github.com/NVlabs/nvdiffrast /opt/nvdiffrast
 
 cd /opt/nvdiffrast
 
-uv pip install -U pip setuptools wheel
+uv pip install --extra-index-url https://pypi.org/simple -U pip setuptools wheel
 export MAX_JOBS=$(nproc)
 python3 setup.py --verbose bdist_wheel --dist-dir /opt/nvdiffrast/wheels/
-uv pip install -e .
-uv pip install /opt/nvdiffrast/wheels/nvdiffrast*.whl
+uv pip install --extra-index-url https://pypi.org/simple -e .
+uv pip install --extra-index-url https://pypi.org/simple /opt/nvdiffrast/wheels/nvdiffrast*.whl
 
 twine upload --verbose /opt/nvdiffrast/wheels/nvdiffrast*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

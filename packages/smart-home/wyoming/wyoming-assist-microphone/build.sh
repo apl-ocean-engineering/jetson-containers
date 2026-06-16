@@ -10,7 +10,7 @@ apt-get install -y --no-install-recommends --fix-missing \
 apt-get clean
 rm -rf /var/lib/apt/lists/*
 
-uv pip install -U \
+uv pip install --extra-index-url https://pypi.org/simple -U \
    build \
    setuptools \
    wheel \
@@ -25,7 +25,7 @@ python3 -m build --wheel --sdist --outdir $PIP_WHEEL_DIR
 cd /
 rm -rf /tmp/wyoming_satellite
 
-uv pip install $PIP_WHEEL_DIR/wyoming_satellite*.whl
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/wyoming_satellite*.whl
 
 uv pip show wyoming_satellite
 

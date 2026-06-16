@@ -16,6 +16,6 @@ uv build --wheel . -v --no-build-isolation --out-dir /opt/jvp-flash-attention/wh
 ls /opt
 cd /
 
-uv pip install /opt/jvp-flash-attention/wheels/jvp_flash_attention*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/jvp-flash-attention/wheels/jvp_flash_attention*.whl
 
 twine upload --verbose /opt/jvp-flash-attention/wheels/jvp_flash_attention*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

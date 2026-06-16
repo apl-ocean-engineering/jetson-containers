@@ -12,6 +12,6 @@ cd ${TVM_FFI_SRC_DIR}
 cd /opt/tvm/python
 uv build --wheel --out-dir /opt/tvm_ffi/wheels .
 
-uv pip install /opt/tvm_ffi/wheels/apache_tvm_ffi-*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/tvm_ffi/wheels/apache_tvm_ffi-*.whl
 
 twine upload --verbose /opt/tvm_ffi/wheels/apache_tvm_ffi-*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

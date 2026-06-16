@@ -100,7 +100,7 @@ export ENABLE_CONTRIB=1
 # export OPENCV_PYTHON_SKIP_GIT_COMMANDS=1
 
 # Install dependencies for building the wheel
-uv pip install scikit-build
+uv pip install --extra-index-url https://pypi.org/simple scikit-build
 
 cat <<EOF > /opt/opencv-python/cv2/version.py
 opencv_version = "${OPENCV_VERSION}"
@@ -116,7 +116,7 @@ cd /
 rm -rf /opt/opencv-python
 
 # install/test/upload wheel
-uv pip install /opt/opencv*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/opencv*.whl
 python3 -c "import cv2; print('OpenCV version:', str(cv2.__version__)); print(cv2.getBuildInformation())"
 twine upload --verbose /opt/opencv*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"
 

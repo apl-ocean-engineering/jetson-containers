@@ -6,7 +6,7 @@ set -x
 : "${PIP_WHEEL_DIR:?PIP_WHEEL_DIR must be set}"
 
 # Install Python deps
-uv pip install compressed-tensors decord2
+uv pip install --extra-index-url https://pypi.org/simple compressed-tensors decord2
 
 REPO_URL="https://github.com/sgl-project/genai-bench"
 REPO_DIR="/opt/genai-bench"
@@ -17,13 +17,13 @@ echo "Building genai-bench ${GENAI_BENCH_VERSION}"
 echo "Tagged branch not found; cloning default branch"
 git clone --recursive --depth 1 "${REPO_URL}" "${REPO_DIR}"
 
-uv pip install --no-cache-dir ninja setuptools wheel numpy uv scikit-build-core
+uv pip install --extra-index-url https://pypi.org/simple --no-cache-dir ninja setuptools wheel numpy uv scikit-build-core
 echo "Building GENAI_BENCH"
 cd "${REPO_DIR}" || exit 1
 
 make install
 uv build --wheel --out-dir /opt --verbose .
-uv pip install /opt/genai_bench*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/genai_bench*.whl
 
 cd "${REPO_DIR}" || exit 1
 

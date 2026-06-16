@@ -25,12 +25,12 @@ if [ "$codebase_version" != "${PIPER_VERSION}" ]; then
     sed -i "s/\(version=\"\)[^\"]+/\1${PIPER_VERSION}/" setup.py
 fi
 
-uv pip install --no-cache-dir --verbose build==1.2.2 scikit-build
+uv pip install --extra-index-url https://pypi.org/simple --no-cache-dir --verbose build==1.2.2 scikit-build
 
 python3 setup.py build_ext --inplace
 python3 -m build --sdist --wheel --outdir ${PIP_WHEEL_DIR}
 
-uv pip install --no-cache-dir --verbose ${PIP_WHEEL_DIR}/piper_tts*.whl
+uv pip install --extra-index-url https://pypi.org/simple --no-cache-dir --verbose ${PIP_WHEEL_DIR}/piper_tts*.whl
 uv pip show piper-tts
 
 # upload wheels

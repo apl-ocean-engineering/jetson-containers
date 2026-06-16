@@ -3,6 +3,7 @@
 set -eux
 
 echo "Installing TensorRT ${TENSORRT_VERSION}..."
+echo "HELLO"
 
 # If no URL provided, skip
 if [ -z "${TENSORRT_URL:-}" ]; then

@@ -56,7 +56,7 @@ bazel build //tensorflow/tools/pip_package:wheel --action_env CLANG_CUDA_COMPILE
 twine upload --verbose /opt/tensorflow/bazel-bin/tensorflow/tools/pip_package/wheel_house/tensorflow*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"
 
 # Install them into the container
-uv pip install /opt/tensorflow/bazel-bin/tensorflow/tools/pip_package/wheel_house/tensorflow*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/tensorflow/bazel-bin/tensorflow/tools/pip_package/wheel_house/tensorflow*.whl
 
 mv /opt/tensorflow/bazel-bin/tensorflow/tools/pip_package/wheel_house/tensorflow*.whl /opt/tensorflow/
 # Clean up all files and close bazel server

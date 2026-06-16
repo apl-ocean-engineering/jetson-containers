@@ -79,7 +79,7 @@ fi
 cd python
 python3 setup.py --verbose bdist_wheel --dist-dir /opt
 
-uv pip install /opt/mlc*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/mlc*.whl
 
 ln -sf ${TVM_HOME:-/opt/tvm}/3rdparty "$(uv pip show tvm | awk '/Location:/ {print $2}')/tvm/3rdparty" || true
 

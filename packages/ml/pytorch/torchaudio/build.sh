@@ -32,7 +32,7 @@ cd ../
 rm -rf /opt/torchaudio
 
 # --- Install and verify ---
-uv pip install /opt/torchaudio*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/torchaudio*.whl
 uv pip show torchaudio && python3 -c 'import torchaudio; print(torchaudio.__version__);'
 
 # --- Upload (if configured) ---

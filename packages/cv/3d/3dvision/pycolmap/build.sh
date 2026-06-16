@@ -53,7 +53,7 @@ export MAX_JOBS="$(nproc)"
 uv build --wheel . --out-dir "$PIP_WHEEL_DIR" --verbose
 
 # (Optional) install locally for immediate use
-uv pip install "$PIP_WHEEL_DIR"/pycolmap-*.whl
+uv pip install --extra-index-url https://pypi.org/simple "$PIP_WHEEL_DIR"/pycolmap-*.whl
 
 # 5) Prepare upload layout(s)
 echo "Staged native files:"

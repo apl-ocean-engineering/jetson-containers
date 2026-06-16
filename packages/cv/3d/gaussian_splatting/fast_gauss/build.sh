@@ -9,9 +9,9 @@ cd /opt/fast_gauss
 export MAX_JOBS=$(nproc)
 
 # Build python wheel from source
-uv pip install PyOpenGL pdbr tqdm ujson ruamel.yaml
+uv pip install --extra-index-url https://pypi.org/simple PyOpenGL pdbr tqdm ujson ruamel.yaml
 uv build --wheel . --out-dir $PIP_WHEEL_DIR --verbose
-uv pip install $PIP_WHEEL_DIR/fast_gauss*.whl
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/fast_gauss*.whl
 
 # Optionally upload to a repository using Twine
 twine upload --verbose $PIP_WHEEL_DIR/fast_gauss*.whl || echo "Failed to upload wheel to ${TWINE_REPOSITORY_URL}"

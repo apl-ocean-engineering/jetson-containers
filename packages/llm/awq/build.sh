@@ -21,7 +21,7 @@ uv build --wheel --no-build-isolation --out-dir $PIP_WHEEL_DIR --verbose ./awq/a
 ls $PIP_WHEEL_DIR
 rm -rf awq
 
-uv pip install $PIP_WHEEL_DIR/awq*.whl
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/awq*.whl
 #uv pip show awq && python3 -c 'import awq' && python3 -m awq.entry --help
 
 twine upload --verbose $PIP_WHEEL_DIR/awq-*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

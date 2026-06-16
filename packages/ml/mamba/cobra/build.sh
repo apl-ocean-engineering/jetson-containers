@@ -13,7 +13,7 @@ git diff
 git status
 
 uv build --wheel --no-build-isolation --out-dir /opt/cobra/wheels .
-uv pip install /opt/cobra/wheels/cobra*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/cobra/wheels/cobra*.whl
 
 cd /opt/mamba
 

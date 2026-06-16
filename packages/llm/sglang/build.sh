@@ -7,7 +7,7 @@ set -x
 
 # --- PRE-INSTALL DEPS ---
 # Install build dependencies first. uv is a very fast installer.
-uv pip install --no-cache-dir ninja setuptools wheel numpy uv scikit-build-core compressed-tensors decord2
+uv pip install --extra-index-url https://pypi.org/simple --no-cache-dir ninja setuptools wheel numpy uv scikit-build-core compressed-tensors decord2
 
 # --- CLONE SGLANG REPO ---
 REPO_URL="https://github.com/sgl-project/sglang"
@@ -62,10 +62,10 @@ echo "📦 Installing the sglang wheel from ${PIP_WHEEL_DIR} and its dependencie
 # Now, when we install the local wheel, pip will fetch its dependencies
 # (like torch, transformers, etc.) from the online package index (PyPI).
 # We use 'uv' here because it's extremely fast.
-uv pip install -v --find-links="${PIP_WHEEL_DIR}" "sglang[all]"
+uv pip install --extra-index-url https://pypi.org/simple -v --find-links="${PIP_WHEEL_DIR}" "sglang[all]"
 
 # Your original script installed 'gemlite' here, so we keep it.
-uv pip install gemlite orjson pybase64
+uv pip install --extra-index-url https://pypi.org/simple gemlite orjson pybase64
 
 echo "🎉 SGLang and all dependencies installed successfully!"
 

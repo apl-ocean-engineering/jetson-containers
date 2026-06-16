@@ -9,7 +9,7 @@ git clone --depth=1 --recursive https://github.com/NX-AI/mlstm_kernels  /opt/mls
 cd /opt/mlstm_kernels
 
 uv build --wheel . -v --no-deps --out-dir /opt/mlstm_kernels/wheels/
-uv pip install /opt/mlstm_kernels/wheels/mlstm_kernels*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/mlstm_kernels/wheels/mlstm_kernels*.whl
 
 cd /opt/mlstm_kernels
 

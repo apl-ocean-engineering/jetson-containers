@@ -85,9 +85,9 @@ echo $VENV_PATH
 # ------------------------------------------------------------------------------
 
 print_log "Installing Python tools via pip"
-uv pip install --upgrade pip setuptools wheel
+uv pip install --extra-index-url https://pypi.org/simple --upgrade pip setuptools wheel
 
-uv pip install --upgrade \
+uv pip install --extra-index-url https://pypi.org/simple --upgrade \
   colcon-common-extensions \
   vcstool rosinstall_generator rosdep \
   pytest pytest-cov pytest-repeat pytest-rerunfailures \
@@ -104,7 +104,7 @@ uv pip install --upgrade \
 # - Some environments install 'em' (EmPy 4+) by default, which breaks rosidl_*.
 # - We remove both 'em' and 'empy' and reinstall EmPy 3.3.4 into the venv.
 uv pip uninstall em empy || true
-uv pip install --no-cache-dir "empy==3.3.4"
+uv pip install --extra-index-url https://pypi.org/simple --no-cache-dir "empy==3.3.4"
 
 # Freeze venv-only requirements (for reproducibility/caching)
 mkdir -p "$ROS_ROOT"

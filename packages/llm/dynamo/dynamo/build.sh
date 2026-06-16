@@ -38,15 +38,15 @@ fi
 
 
 
-uv pip install maturin
+uv pip install --extra-index-url https://pypi.org/simple maturin
 mkdir /opt/dynamo/wheels
-uv pip install -U -r /opt/dynamo/container/deps/requirements.txt
+uv pip install --extra-index-url https://pypi.org/simple -U -r /opt/dynamo/container/deps/requirements.txt
 maturin build --release --out /opt/dynamo/wheels
 twine upload --verbose /opt/dynamo/wheels/ai_dynamo_runtime*.whl || echo "Failed to upload wheel to ${TWINE_REPOSITORY_URL}"
-uv pip install /opt/dynamo/wheels/ai_dynamo_runtime*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/dynamo/wheels/ai_dynamo_runtime*.whl
 
 cd /opt/dynamo
 uv build --wheel --no-deps --out-dir /opt/dynamo/wheels . --verbose
-uv pip install /opt/dynamo/wheels/ai_dynamo*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/dynamo/wheels/ai_dynamo*.whl
 
 twine upload --verbose /opt/dynamo/wheels/ai_dynamo*.whl || echo "Failed to upload wheel to ${TWINE_REPOSITORY_URL}"

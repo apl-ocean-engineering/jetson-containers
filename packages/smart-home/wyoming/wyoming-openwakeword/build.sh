@@ -9,7 +9,7 @@ apt-get install -y --no-install-recommends \
 apt-get clean
 rm -rf /var/lib/apt/lists/*
 
-uv pip install --upgrade \
+uv pip install --extra-index-url https://pypi.org/simple --upgrade \
    setuptools \
    wheel
 
@@ -23,7 +23,7 @@ python3 setup.py sdist bdist_wheel --verbose --dist-dir $PIP_WHEEL_DIR
 cd /
 rm -rf /opt/wyoming-openwakeword
 
-uv pip install $PIP_WHEEL_DIR/wyoming_openwakeword*.whl
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/wyoming_openwakeword*.whl
 
 uv pip show wyoming_openwakeword
 python3 -c 'import wyoming_openwakeword; print(wyoming_openwakeword.__version__);'

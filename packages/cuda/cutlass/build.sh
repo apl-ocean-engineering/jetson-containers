@@ -24,11 +24,11 @@ python3 setup_pycute.py bdist_wheel --dist-dir $WHL
 
 cd $SRC
 
-uv pip install $WHL/nvidia_cutlass*.whl $WHL/pycute*.whl
+uv pip install --extra-index-url https://pypi.org/simple $WHL/nvidia_cutlass*.whl $WHL/pycute*.whl
 twine upload --verbose $WHL/nvidia_cutlass*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"
 twine upload --verbose $WHL/pycute*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"
 
 echo "Installing nvidia-cutlass-dsl for Python 3.12"
-uv pip install nvidia-cutlass-dsl --prerelease=allow || echo "failed to install nvidia-cutlass-dsl for Python ${PYTHON_VERSION}"
+uv pip install --extra-index-url https://pypi.org/simple nvidia-cutlass-dsl --prerelease=allow || echo "failed to install nvidia-cutlass-dsl for Python ${PYTHON_VERSION}"
 
 # python3 -c 'import cutlass'

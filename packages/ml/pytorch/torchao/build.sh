@@ -17,7 +17,7 @@ USE_CPP=1 python3 setup.py --verbose bdist_wheel --dist-dir /opt
 cd ../
 rm -rf /opt/torchao
 
-uv pip install /opt/torchao*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/torchao*.whl
 uv pip show torchao && python3 -c 'import torchao; print(torchao.__version__);'
 
 twine upload --verbose /opt/torchao*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

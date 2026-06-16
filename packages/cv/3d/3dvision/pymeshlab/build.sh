@@ -22,5 +22,5 @@ else
 fi
 
 # Install and upload python wheel
-uv pip install $PIP_WHEEL_DIR/pymeshlab*.whl
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/pymeshlab*.whl
 twine upload --verbose $PIP_WHEEL_DIR/pymeshlab*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

@@ -17,10 +17,10 @@ export HERMETIC_CUDA_VERSION=13.1.0
 export HERMETIC_CUDNN_VERSION=9.17.0
 export HERMETIC_CUDA_COMPUTE_CAPABILITIES=8.7,8.9,9.0,11.0,12.0,12.1
 
-uv pip install openexr tensorflow_addons
+uv pip install --extra-index-url https://pypi.org/simple openexr tensorflow_addons
 
 uv build --wheel --no-build-isolation --no-deps --out-dir /opt/tensorflow_graphics/wheels .
-uv pip install /opt/tensorflow_graphics/wheels/tensorflow_graphics*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/tensorflow_graphics/wheels/tensorflow_graphics*.whl
 
 cd /opt/tensorflow_graphics
 

@@ -12,7 +12,7 @@ BUILD_VERSION=${TORCH_SDE_VERSION} \
 python3 setup.py --verbose bdist_wheel --dist-dir /opt/torchsde/wheels
 
 cd ../
-uv pip install /opt/torchsde/wheels/torchsde*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/torchsde/wheels/torchsde*.whl
 uv pip show torchsde && python3 -c 'import torchsde; print(torchsde.__version__);'
 
 twine upload --verbose /opt/torchsde/wheels/torchsde*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -ex
 
-uv pip install pre-commit nanobind==2.5.0
+uv pip install --extra-index-url https://pypi.org/simple pre-commit nanobind==2.5.0
 # Clone the repository if it doesn't exist
 git clone --branch=${VLLM_BRANCH} --recursive --depth=1 https://github.com/vllm-project/vllm /opt/vllm ||
 git clone --recursive --depth=1 https://github.com/vllm-project/vllm /opt/vllm
@@ -44,7 +44,7 @@ else
   exit 1
 fi
 
-uv pip install -r "${BUILD_REQUIREMENTS_FILE}" -v
+uv pip install --extra-index-url https://pypi.org/simple -r "${BUILD_REQUIREMENTS_FILE}" -v
 python3 -m setuptools_scm
 
 ARCH=$(uname -i)
@@ -57,10 +57,10 @@ if [ "${ARCH}" = "aarch64" ]; then
 fi
 
 uv build --wheel --no-build-isolation -v --out-dir /opt/vllm/wheels .
-uv pip install /opt/vllm/wheels/vllm*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/vllm/wheels/vllm*.whl
 
 cd /opt/vllm
-uv pip install compressed-tensors
+uv pip install --extra-index-url https://pypi.org/simple compressed-tensors
 
 # Optionally upload to a repository using Twine
 twine upload --verbose /opt/vllm/wheels/vllm*.whl || echo "Failed to upload wheel to ${TWINE_REPOSITORY_URL}"

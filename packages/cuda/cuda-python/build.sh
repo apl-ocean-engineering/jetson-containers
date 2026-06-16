@@ -27,14 +27,14 @@ else
   sed 's|^numpy.=.*|numpy|g' -i requirements.txt
   sed 's|^numba.=.*|numba|g' -i requirements.txt
 
-  uv pip install -r requirements.txt
+  uv pip install --extra-index-url https://pypi.org/simple -r requirements.txt
   python3 setup.py bdist_wheel --verbose --dist-dir $WHL
 fi
 
 cd /
 rm -rf $SRC
 
-uv pip install $WHL/cuda*.whl
+uv pip install --extra-index-url https://pypi.org/simple $WHL/cuda*.whl
 twine upload --verbose $WHL/cuda*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"
 
 python3 -c 'import cuda'

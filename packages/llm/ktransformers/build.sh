@@ -8,10 +8,10 @@ git clone --recursive --depth=1 https://github.com/kvcache-ai/ktransformers /opt
 cd /opt/ktransformers
 
 uv build --wheel --no-build-isolation -v --out-dir /opt/ktransformers/wheels .
-uv pip install /opt/ktransformers/wheels/ktransformers*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/ktransformers/wheels/ktransformers*.whl
 
 cd /opt/ktransformers
-uv pip install compressed-tensors
+uv pip install --extra-index-url https://pypi.org/simple compressed-tensors
 
 # Optionally upload to a repository using Twine
 twine upload --verbose /opt/ktransformers/wheels/ktransformers*.whl || echo "Failed to upload wheel to ${TWINE_REPOSITORY_URL}"

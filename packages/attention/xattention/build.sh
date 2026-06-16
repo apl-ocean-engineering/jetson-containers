@@ -9,8 +9,8 @@ git clone --depth=1 https://github.com/mit-han-lab/x-attention /opt/xattention
 cd /opt/xattention
 
 sed -i 's/==/>=/g' requirements.txt
-uv pip install packaging setuptools wheel
-uv pip install --reinstall blinker
+uv pip install --extra-index-url https://pypi.org/simple packaging setuptools wheel
+uv pip install --extra-index-url https://pypi.org/simple --reinstall blinker
 
 
 export MAX_JOBS="$(nproc)"
@@ -20,6 +20,6 @@ echo "Building with MAX_JOBS=$MAX_JOBS and CMAKE_BUILD_PARALLEL_LEVEL=$CMAKE_BUI
 MAX_JOBS="$(nproc)" \
 CMAKE_BUILD_PARALLEL_LEVEL=$MAX_JOBS \
 uv build --wheel --out-dir /opt/xattention/wheels --verbose .
-# uv pip install /opt/xattention/wheels/xattn*.whl
-uv pip install -e .
+# uv pip install --extra-index-url https://pypi.org/simple /opt/xattention/wheels/xattn*.whl
+uv pip install --extra-index-url https://pypi.org/simple -e .
 twine upload --verbose /opt/xattention/wheels/xattn*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

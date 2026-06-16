@@ -15,7 +15,7 @@ ls /opt/pixsfm/wheels
 # Return to the root directory
 cd /
 
-uv pip install /opt/pixsfm/wheels/pixsfm*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/pixsfm/wheels/pixsfm*.whl
 
 # Optionally upload to a repository using Twine
 twine upload --verbose /opt/pixsfm/wheels/pixsfm*.whl || echo "Failed to upload wheel to ${TWINE_REPOSITORY_URL}"

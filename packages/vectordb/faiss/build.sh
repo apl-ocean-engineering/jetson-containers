@@ -42,7 +42,7 @@ make -j$(nproc) swigfaiss
 cd faiss/python
 python3 setup.py --verbose bdist_wheel --dist-dir /opt
 
-uv pip install /opt/faiss*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/faiss*.whl
 uv pip show faiss && python3 -c 'import faiss'
 
 # cache build artifacts on server

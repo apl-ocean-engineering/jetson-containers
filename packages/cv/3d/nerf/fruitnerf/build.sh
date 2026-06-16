@@ -15,13 +15,13 @@ wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
 wget https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth
 wget https://huggingface.co/lkeab/hq-sam/resolve/main/sam_hq_vit_h.pth
 
-uv pip install -e segment_anything
-uv pip install --no-build-isolation -e GroundingDINO
-uv pip install --upgrade diffusers[torch]
-uv pip install -U pycocotools matplotlib ipykernel #opencv-python onnx onnxruntime-gpu
-uv pip install -U segment-anything-hq
+uv pip install --extra-index-url https://pypi.org/simple -e segment_anything
+uv pip install --extra-index-url https://pypi.org/simple --no-build-isolation -e GroundingDINO
+uv pip install --extra-index-url https://pypi.org/simple --upgrade diffusers[torch]
+uv pip install --extra-index-url https://pypi.org/simple -U pycocotools matplotlib ipykernel #opencv-python onnx onnxruntime-gpu
+uv pip install --extra-index-url https://pypi.org/simple -U segment-anything-hq
 
 cd /opt/fruitnerf
 
-uv pip install -e .
+uv pip install --extra-index-url https://pypi.org/simple -e .
 

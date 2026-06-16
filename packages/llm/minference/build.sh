@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -ex
 
-uv pip install compressed-tensors decord2
+uv pip install --extra-index-url https://pypi.org/simple compressed-tensors decord2
 
 REPO_URL="https://github.com/microsoft/MInference"
 echo "Building minference ${MINFERENCE_VERSION}"
@@ -24,8 +24,8 @@ echo "Building with MAX_JOBS=$MAX_JOBS and CMAKE_BUILD_PARALLEL_LEVEL=$CMAKE_BUI
 cd /opt/minference/
 
 uv build --wheel '.[all]' --wheel-dir $PIP_WHEEL_DIR
-uv pip install $PIP_WHEEL_DIR/minference-*.whl
-uv pip install tilelang
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/minference-*.whl
+uv pip install --extra-index-url https://pypi.org/simple tilelang
 
 cd /opt/minference
 uv pip show minference

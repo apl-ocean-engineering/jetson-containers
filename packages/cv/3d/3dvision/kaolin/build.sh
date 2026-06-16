@@ -10,10 +10,10 @@ git clone --depth=1 --recursive https://github.com/NVIDIAGameWorks/kaolin /opt/k
 cd /opt/kaolin
 
 # Set CC-11 and G++-11 as the default
-uv pip install --reinstall blinker
-uv pip install -r tools/build_requirements.txt
-uv pip install -r tools/viz_requirements.txt
-uv pip install -r tools/requirements.txt
+uv pip install --extra-index-url https://pypi.org/simple --reinstall blinker
+uv pip install --extra-index-url https://pypi.org/simple -r tools/build_requirements.txt
+uv pip install --extra-index-url https://pypi.org/simple -r tools/viz_requirements.txt
+uv pip install --extra-index-url https://pypi.org/simple -r tools/requirements.txt
 
 export IGNORE_TORCH_VER=1
 export CUB_HOME=/usr/local/cuda-*/include/
@@ -21,7 +21,7 @@ export CUB_HOME=/usr/local/cuda-*/include/
 MAX_JOBS=$(nproc) \
 uv build --wheel --no-build-isolation . --out-dir /opt/kaolin/wheels --verbose
 
-uv pip install /opt/kaolin/wheels/kaolin*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/kaolin/wheels/kaolin*.whl
 
 cd /opt/kaolin
 

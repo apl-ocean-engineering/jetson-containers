@@ -14,8 +14,8 @@ export MAX_JOBS=$(nproc)
 
 # Build and install python wheel
 uv build --wheel --no-build-isolation . --out-dir $PIP_WHEEL_DIR --verbose
-uv pip install lpips scipy
-uv pip install $PIP_WHEEL_DIR/nerfacc*.whl
+uv pip install --extra-index-url https://pypi.org/simple lpips scipy
+uv pip install --extra-index-url https://pypi.org/simple $PIP_WHEEL_DIR/nerfacc*.whl
 
 # Optionally upload to a repository using Twine
 twine upload --verbose $PIP_WHEEL_DIR/nerfacc*.whl || echo "Failed to upload wheel to ${TWINE_REPOSITORY_URL}"

@@ -21,6 +21,6 @@ uv build --wheel . -v --no-build-isolation --out-dir /opt/triattention/wheels/
 ls /opt/triattention/wheels
 cd /
 
-uv pip install /opt/triattention/wheels/triattention*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/triattention/wheels/triattention*.whl
 
 twine upload --verbose /opt/triattention/wheels/triattention*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"

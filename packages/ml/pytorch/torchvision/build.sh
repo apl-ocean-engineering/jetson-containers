@@ -14,7 +14,7 @@ python3 setup.py --verbose bdist_wheel --dist-dir /opt
 cd ../
 rm -rf /opt/torchvision
 
-uv pip install /opt/torchvision*.whl
+uv pip install --extra-index-url https://pypi.org/simple /opt/torchvision*.whl
 uv pip show torchvision && python3 -c 'import torchvision; print(torchvision.__version__);'
 
 twine upload --verbose /opt/torchvision*.whl || echo "failed to upload wheel to ${TWINE_REPOSITORY_URL}"
