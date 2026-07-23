@@ -25,7 +25,7 @@ cleanup() {
 }
 trap cleanup EXIT INT TERM
 
-sleep 5
+sleep 10
 
 echo "Listening for a single message on /chatter..."
 if ros2 topic echo /chatter --once; then

@@ -55,6 +55,7 @@ def ros_container(package: dict, *sources: str,
             for source in sources:
                 pkg = copy.deepcopy(package)
 
+
                 if distro == ROS_DISTRO and 'alias' not in pkg:
                     pkg['alias'] = pkg['name'].split(':')[0] + ':$TAG'
 
@@ -67,7 +68,7 @@ def ros_container(package: dict, *sources: str,
                 }
 
                 if 'build_args' in kwargs:
-                    pkg['build_args'].merge(kwargs['build_args'])
+                    pkg['build_args'] = pkg['build_args'] | kwargs['build_args']
 
                 subs = dict(
                     ROS_DISTRO=distro, ROS_PACKAGE=base_package,
@@ -86,10 +87,10 @@ def ros_container(package: dict, *sources: str,
                 if 'http' in source:
                     a = source.find('@')
                     if a >= 0:
-                        pkg['build_args'].merge({
+                        pkg['build_args'] = pkg['build_args'] | {
                             'ROS_PACKAGE': source[:a],
                             'ROS_BRANCH': source[a+1:],
-                        })
+                        }
 
                 packages.append(pkg)
 

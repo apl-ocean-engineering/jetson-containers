@@ -8,9 +8,9 @@ export ROS_PACKAGE_PATH=${AMENT_PREFIX_PATH}
 mkdir -p $ROS_WORKSPACE/src || true;
 
 # install foxglove_msgs
-git clone https://github.com/foxglove/foxglove-sdk /tmp/foxglove-sdk
-cp -r /tmp/foxglove-sdk/ros/foxglove_msgs $ROS_WORKSPACE/src
-rm -rf /tmp/foxglove-sdk
+# git clone https://github.com/foxglove/foxglove-sdk /tmp/foxglove-sdk
+# cp -r /tmp/foxglove-sdk/ros/src/foxglove_msgs $ROS_WORKSPACE/src
+# rm -rf /tmp/foxglove-sdk
 
 # distro-specific workarounds
 if [ $ROS_DISTRO == "jazzy" ]; then
@@ -28,4 +28,4 @@ ROS_BRANCH=master /ros2_install.sh "https://github.com/osrf/negotiated"
 ROS_BRANCH=v0.9.3 /ros2_install.sh "https://github.com/Neargye/magic_enum"
 
 # install isaac_ros_common
-/ros2_install.sh "${ROS_PACKAGE}"
+ROS_BRANCH=release-$ISAAC_VERSION /ros2_install.sh "${ROS_PACKAGE}"

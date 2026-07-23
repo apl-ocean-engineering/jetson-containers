@@ -3,7 +3,7 @@ from packages.physicalAI.ros import ros_container, ROS_DISTROS
 
 ISAAC_ROS_URL="https://github.com/NVIDIA-ISAAC-ROS"
 
-def isaac_ros(repo, version='4.4', base_url=ISAAC_ROS_URL, workspace='/opt/isaac-ros', depends=[], tag=None, **kwargs):
+def isaac_ros(repo, version='4.0', base_url=ISAAC_ROS_URL, workspace='/opt/isaac-ros', depends=[], tag=None, **kwargs):
     """
     Generate a container build with an Isaac ROS package added to it,
     which by default is under `/opt/isaac-ros` and sourced on startup.
@@ -23,9 +23,11 @@ def isaac_ros(repo, version='4.4', base_url=ISAAC_ROS_URL, workspace='/opt/isaac
     kwargs.setdefault('name', f'isaac-ros:$TAG-{version}-$ROS_DISTRO-$ROS_PACKAGE')
     kwargs.setdefault('group', 'robots')
     kwargs.setdefault('distros', ['humble', 'jazzy'])
+    kwargs.setdefault('base_packages', ['desktop','ros-base'])
     kwargs.setdefault('test', ['test.sh'])
+    kwargs.setdefault('build_args', {"ISAAC_VERSION" : version})
 
-    return ros_container(package, f"{base_url}/{repo}", depends=depends, tag=tag, workspace=workspace, **kwargs)
+    return ros_container(package, f"{base_url}/{repo}@release-{version}", depends=depends, tag=tag, workspace=workspace, **kwargs)
 
 package = [
     isaac_ros('isaac_ros_common', dockerfile='Dockerfile'),

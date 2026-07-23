@@ -7,7 +7,7 @@ set -euo pipefail
 
 # ---- Base env (if present) ----------------------------------------------------
 # Set required environment variables before sourcing ROS environment
-export COLCON_TRACE="${COLCON_TRACE:-0}"
+export COLCON_TRACE="${COLCON_TRACE:-}"
 export COLCON_PREFIX_PATH="${COLCON_PREFIX_PATH:-}"
 export COLCON_PYTHON_EXECUTABLE="${COLCON_PYTHON_EXECUTABLE:-}"
 export AMENT_PREFIX_PATH="${AMENT_PREFIX_PATH:-}"

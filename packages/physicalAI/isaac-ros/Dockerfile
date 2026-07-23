@@ -8,6 +8,7 @@ FROM ${BASE_IMAGE}
 ARG ROS_PACKAGE=https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common \
     ROS_WORKSPACE=/opt/isaac-ros \
     ROS_BRANCH=main \
+    ISAAC_VERSION=${ISAAC_VERSION} \
     TMP_DIR=/tmp/isaac-ros
 
 COPY install.sh ${TMP_DIR}/
